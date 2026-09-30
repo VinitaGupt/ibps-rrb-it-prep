@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Cyber Security, Cryptography &amp; Network Security – IBPS RRB IT</title><style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1b1f24;--muted:#5d6570;--line:#e2e5ea;--accent:#1d4e89;--accent-soft:#e8eff8;
+--must:#c0392b;--opt:#b7791f;--skip:#2f855a;--done:#8a929c;--bar:#2f855a;--ok:#2f855a;--ok-soft:#e6f4ec;--bad:#c0392b;--bad-soft:#fbeaea;--lock:#9aa1aa}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121417;--card:#1b1e23;--text:#e6e8eb;--muted:#9aa3ad;--line:#2c3037;
+--accent:#7fb0ee;--accent-soft:#1f2a38;--must:#f07167;--opt:#e0b04f;--skip:#5fc48a;--done:#6b737c;--bar:#5fc48a;--ok:#5fc48a;--ok-soft:#18301f;--bad:#f07167;--bad-soft:#3a1d1d;--lock:#5b626b}}
+:root[data-theme="dark"]{--bg:#121417;--card:#1b1e23;--text:#e6e8eb;--muted:#9aa3ad;--line:#2c3037;
+--accent:#7fb0ee;--accent-soft:#1f2a38;--must:#f07167;--opt:#e0b04f;--skip:#5fc48a;--done:#6b737c;--bar:#5fc48a;--ok:#5fc48a;--ok-soft:#18301f;--bad:#f07167;--bad-soft:#3a1d1d;--lock:#5b626b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 "Segoe UI","Nirmala UI",system-ui,-apple-system,Arial,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:20px 16px 48px}
+a{color:var(--accent)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.back{font-size:14px;text-decoration:none}
+h1{font-size:24px;margin:6px 0 4px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:12px}
+.pls a{display:inline-block;margin:2px 10px 2px 0}
+.progress{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:14px 0 18px;position:sticky;top:0;z-index:2}
+.progress .row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px;gap:8px;flex-wrap:wrap}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden}
+.bar>div{height:100%;background:var(--bar);width:0;transition:width .2s}
+.free{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:8px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:0 0 16px;overflow:hidden}
+section h2{font-size:16px;margin:0;padding:10px 14px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+section h2 .lvl{font-size:13px;font-weight:600}
+section.must h2 .lvl{color:var(--must)} section.opt h2 .lvl{color:var(--opt)}
+section h2 .cnt{margin-left:auto;font-size:13px;color:var(--muted);font-weight:400}
+ul.v{list-style:none;margin:0;padding:0}
+ul.v>li{border-top:1px solid var(--line)}
+ul.v>li:first-child{border-top:0}
+.r{display:flex;align-items:center;gap:10px;padding:8px 14px}
+.st{flex:none;width:22px;text-align:center;font-size:15px}
+.lec{flex:none;min-width:52px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.t{flex:1;min-width:0}
+.t a{text-decoration:none;color:var(--text)} .t a:hover{color:var(--accent);text-decoration:underline}
+.yt,.qb{flex:none;font:inherit;font-size:13px;text-decoration:none;padding:2px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--accent);cursor:pointer;white-space:nowrap}
+.qb.passed{color:var(--ok);border-color:var(--ok)}
+li.done .t a{color:var(--done)}
+li.locked .r{opacity:.55}
+li.locked .t a,li.locked .yt{pointer-events:none;color:var(--lock)}
+li.locked .qb{pointer-events:none;color:var(--lock)}
+.quiz{display:none;margin:0 14px 12px 46px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+li.open .quiz{display:block}
+.stem{white-space:pre-wrap;font-family:Consolas,"Cascadia Mono","Nirmala UI",monospace;font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px;margin:0 0 12px;overflow-x:auto}
+.qq{margin:0 0 14px}
+.qq .qt{font-weight:600;margin-bottom:6px;white-space:pre-wrap}
+.qq label{display:flex;gap:8px;align-items:flex-start;padding:5px 8px;border-radius:6px;cursor:pointer;border:1px solid transparent}
+.qq label:hover{background:var(--card)}
+.qq input{margin-top:4px;flex:none}
+.qq label.right{background:var(--ok-soft);border-color:var(--ok)}
+.qq label.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.qq .ex{display:none;font-size:13px;color:var(--muted);margin:6px 0 0 8px;white-space:pre-wrap}
+.quiz.checked .ex{display:block}
+.qa{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.qa .msg{font-size:14px;font-weight:600}
+.msg.ok{color:var(--ok)} .msg.bad{color:var(--bad)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 16px}
+.box h3{margin:0 0 6px;font-size:15px}
+.box.skip h3{color:var(--skip)}
+.box ul{margin:0;padding-left:20px}
+.btns{display:flex;gap:8px}
+button{font:inherit;font-size:13px;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:10px 0 22px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--accent)}
+.card .n{font-size:12px;color:var(--muted)} .card .h{font-weight:600;margin:2px 0 8px}
+.card .s{font-size:13px;color:var(--muted);margin-top:6px}
+h2.g{font-size:18px;margin:22px 0 4px}
+@media (max-width:560px){.lec{min-width:36px}.yt{display:none}.quiz{margin-left:14px}}
+@media print{.progress,.btns,.back,.qb,.quiz{display:none!important}body{background:#fff}section,.box{break-inside:avoid}li.locked .r{opacity:1}}
+
+.part{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:6px}
+section h2 .tn{flex:none;font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:5px;padding:1px 7px}
+.yt-real{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{flex:none;font-size:11px;border-radius:5px;padding:1px 6px;border:1px solid var(--line);color:var(--opt)}
+.see{padding:10px 14px;font-size:14px;color:var(--muted)}
+.see b{color:var(--text)}
+.toc{columns:2;column-gap:24px;margin:0;padding-left:20px;font-size:14px}
+.toc li{break-inside:avoid}
+.toc .c{color:var(--muted);font-size:12px}
+@media (max-width:560px){.toc{columns:1}}
+</style></head>
+<body><div class="wrap"><div class="top"><a class="back" href="00_Index.html">← Sabhi subjects</a>
+<div class="btns"><button id="clear">Progress reset</button><button onclick="window.print()">Print</button></div></div>
+<div class="part">Professional Knowledge — Additional IT areas</div>
+<h1>Cyber Security, Cryptography &amp; Network Security</h1>
+<div class="meta"><div class="pls"><a href="https://www.youtube.com/playlist?list=PLxCzCOWd7aiFjkQbGj_yHeTEVPn422_z5" target="_blank" rel="noopener">📺 Main playlist (Gate Smashers)</a><a href="https://www.youtube.com/playlist?list=PLxCzCOWd7aiGnXrHnMcFFPM4lUwQlR7ZT" target="_blank" rel="noopener">📺 Cybersecurity &amp; Ethical Hacking (not checked video by video)</a></div></div><div class="box"><h3>📋 Syllabus topics (PDF ke order mein)</h3><ol class="toc"><li><a href="#t1">Security basics</a> <span class="c">1 video</span></li><li><a href="#t2">Cryptography</a> <span class="c">4 video</span></li><li><a href="#t3">Network Security (SSL)</a> <span class="c">1 video</span></li></ol></div><div class="progress"><div class="row"><span>🔴 Zaroor wale: <b id="pm">0</b></span><span>Kul pass: <b id="pt">0</b></span></div><div class="bar"><div id="pb"></div></div>
+<label class="free"><input type="checkbox" id="free"> Free mode — lock hata do (sabhi videos khule)</label></div>
+<div class="box"><h3>Kaise chalega</h3><ul><li>Video dekho → <b>📝 MCQ</b> kholo → 5 sawal karo. <b>3/5</b> sahi par ✅ pass aur agla video 🔓 unlock.</li><li>🔴 zaroor wale videos order mein khulte hain. 🟡 optional videos lock nahi karte.</li><li>Har video ke neeche uska <i>asli YouTube title</i> aur channel diya hai (sab URLs 30 Sep 2026 ko check kiye).</li></ul></div><section id="t1" class="must"><h2><span class="tn">Topic 1</span><span>Security basics</span><span class="cnt"></span></h2><ul class="v"><li data-id="lswzFfs-peo" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/lswzFfs-peo" target="_blank" rel="noopener">CIA Properties</a><span class="yt-real" title="CIA Properties | Confidentiality, Integrity, Availability with examples — Gate Smashers">YouTube: CIA Properties | Confidentiality, Integrity, Availability with examples — Gate Smashers</span></span><a class="yt" href="https://youtu.be/lswzFfs-peo" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li></ul></section><section id="t2" class="must"><h2><span class="tn">Topic 2</span><span>Cryptography</span><span class="cnt"></span></h2><ul class="v"><li data-id="trHox1bN5es" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/trHox1bN5es" target="_blank" rel="noopener">Cryptography intro</a><span class="yt-real" title="Lec-88: Cryptography in computer network in Hindi | Cryptography in Information Security — Gate Smashers">YouTube: Lec-88: Cryptography in computer network in Hindi | Cryptography in Information Security — Gate Smashers</span></span><a class="yt" href="https://youtu.be/trHox1bN5es" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li><li data-id="6AmmQiOWoXM" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/6AmmQiOWoXM" target="_blank" rel="noopener">Symmetric Key Cryptography</a><span class="yt-real" title="Lec-89: Symmetric Key Cryptography in Network Security with examples — Gate Smashers">YouTube: Lec-89: Symmetric Key Cryptography in Network Security with examples — Gate Smashers</span></span><a class="yt" href="https://youtu.be/6AmmQiOWoXM" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li><li data-id="xw19eT5thIE" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/xw19eT5thIE" target="_blank" rel="noopener">Asymmetric Key Cryptography</a><span class="yt-real" title="Lec-91: Asymmetric key Cryptography with example | Network Security — Gate Smashers">YouTube: Lec-91: Asymmetric key Cryptography with example | Network Security — Gate Smashers</span></span><a class="yt" href="https://youtu.be/xw19eT5thIE" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li><li data-id="VUxfDCmWM0U" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/VUxfDCmWM0U" target="_blank" rel="noopener">RSA Algorithm</a><span class="yt-real" title="Lec-92: RSA Algorithm in Network Security with examples in Hindi rsa algorithm example in hindi — Gate Smashers">YouTube: Lec-92: RSA Algorithm in Network Security with examples in Hindi rsa algorithm example in hindi — Gate Smashers</span></span><a class="yt" href="https://youtu.be/VUxfDCmWM0U" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li></ul></section><section id="t3" class="must"><h2><span class="tn">Topic 3</span><span>Network Security (SSL)</span><span class="cnt"></span></h2><ul class="v"><li data-id="lh2K_kDH5s0" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/lh2K_kDH5s0" target="_blank" rel="noopener">SSL Certificates</a><span class="yt-real" title="Lec-6: What are SSL Certificates &amp; How they work? | System Design — Gate Smashers">YouTube: Lec-6: What are SSL Certificates &amp; How they work? | System Design — Gate Smashers</span></span><a class="yt" href="https://youtu.be/lh2K_kDH5s0" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li></ul></section><div class="meta">Progress isi browser mein save hota hai.</div></div><script>
+const KEY='ibps-rrb-it-quiz';
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
+function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+function loadFree(){try{return localStorage.getItem('ibps-rrb-it-free')==='1'}catch(e){return false}}
+function saveFree(v){try{localStorage.setItem('ibps-rrb-it-free',v?'1':'0')}catch(e){}}
+
+const MCQ={"lswzFfs-peo":{"questions":[{"q":"In information security, the CIA triad stands for:","options":["Control, Integrity, Authentication","Confidentiality, Identity, Access","Confidentiality, Integrity, Availability","Cryptography, Integrity, Authorisation"],"answer":2,"explain":"The three core security goals are Confidentiality, Integrity and Availability."},{"q":"A Denial of Service (DoS) attack mainly violates which security property?","options":["Confidentiality","Integrity","Non-repudiation","Availability"],"answer":3,"explain":"DoS makes a service unusable for legitimate users, so it attacks availability."},{"q":"Comparing the hash value of a downloaded file with the published hash mainly checks:","options":["Confidentiality","Integrity","Availability","Anonymity"],"answer":1,"explain":"A matching hash shows the file was not altered, which is integrity."},{"q":"Encrypting data so that only authorised people can read it mainly provides:","options":["Confidentiality","Availability","Integrity","Accountability"],"answer":0,"explain":"Encryption hides the content from unauthorised readers, which is confidentiality."},{"q":"An attacker changes the amount in a funds-transfer message while it is in transit. Which property is violated?","options":["Availability","Confidentiality","Integrity","Anonymity"],"answer":2,"explain":"Unauthorised modification of data is a violation of integrity."}]},"trHox1bN5es":{"questions":[{"q":"Converting plaintext into ciphertext is called:","options":["Decryption","Encryption","Compression","Cryptanalysis"],"answer":1,"explain":"Encryption turns readable plaintext into unreadable ciphertext; decryption reverses it."},{"q":"SHA-256 produces a hash (message digest) of what length?","options":["128 bits","160 bits","512 bits","256 bits"],"answer":3,"explain":"As its name says, SHA-256 always outputs a 256-bit digest, whatever the input size."},{"q":"Using a Caesar cipher with a shift of 3, what is the encryption of BANK?","options":["EDQN","CBOL","YXKH","EDNQ"],"answer":0,"explain":"Each letter moves 3 places forward: B->E, A->D, N->Q, K->N, giving EDQN."},{"q":"A cipher that only rearranges the order of the plaintext letters, without replacing them, is a:","options":["Substitution cipher","Caesar cipher","Transposition cipher","Hash function"],"answer":2,"explain":"Transposition ciphers permute positions; substitution ciphers replace letters."},{"q":"According to Kerckhoffs's principle, the security of a cryptosystem should depend only on the secrecy of the:","options":["Algorithm","Key","Ciphertext","Length of the plaintext"],"answer":1,"explain":"The algorithm may be public; only the key must be kept secret."}]},"6AmmQiOWoXM":{"questions":[{"q":"In symmetric key cryptography:","options":["The same secret key is used for both encryption and decryption","A public key encrypts and a private key decrypts","No key is used","Each user has a pair of mathematically related keys"],"answer":0,"explain":"Symmetric (secret-key) cryptography uses one shared key for both operations."},{"q":"Which of the following is a symmetric key algorithm?","options":["RSA","AES","Elliptic Curve Cryptography","Diffie-Hellman"],"answer":1,"explain":"AES is a symmetric block cipher; RSA, ECC and Diffie-Hellman are public-key techniques."},{"q":"How many secret keys are needed so that every pair among 10 users can communicate privately using symmetric cryptography?","options":["10","20","45","90"],"answer":2,"explain":"Number of keys = n(n-1)/2 = 10 x 9 / 2 = 45."},{"q":"What is the effective key length of DES?","options":["64 bits","128 bits","48 bits","56 bits"],"answer":3,"explain":"DES uses a 64-bit key of which 8 bits are parity, so the effective key length is 56 bits."},{"q":"What is the block size of AES?","options":["128 bits","64 bits","192 bits","56 bits"],"answer":0,"explain":"AES always uses a 128-bit block; its key can be 128, 192 or 256 bits."}]},"xw19eT5thIE":{"questions":[{"q":"Asymmetric key cryptography uses:","options":["One shared secret key","No keys at all","A pair of keys: a public key and a private key","Only a hash function"],"answer":2,"explain":"Each user has a public key that can be shared and a private key kept secret."},{"q":"For confidentiality, when A sends a secret message to B using public-key cryptography, A encrypts it with:","options":["B's public key","A's private key","A's public key","B's private key"],"answer":0,"explain":"Only B has the matching private key, so only B can decrypt it."},{"q":"How many keys in total are required for 10 users using public-key cryptography?","options":["45","20","10","90"],"answer":1,"explain":"Each user needs one key pair: 2n = 2 x 10 = 20 keys."},{"q":"Which of the following is an asymmetric key algorithm?","options":["DES","AES","Blowfish","RSA"],"answer":3,"explain":"RSA is a public-key algorithm; DES, AES and Blowfish are symmetric."},{"q":"To create a digital signature, the sender signs the message (usually its hash) with:","options":["The receiver's public key","The sender's private key","The receiver's private key","The sender's public key"],"answer":1,"explain":"Only the sender has their private key, so the signature proves origin; anyone can verify it with the sender's public key."}]},"VUxfDCmWM0U":{"stem":"In an RSA system, the two primes are p = 3 and q = 11, and the public exponent is e = 3.","questions":[{"q":"What is the modulus n?","options":["14","33","30","20"],"answer":1,"explain":"n = p x q = 3 x 11 = 33."},{"q":"What is the value of phi(n)?","options":["20","33","22","32"],"answer":0,"explain":"phi(n) = (p - 1)(q - 1) = 2 x 10 = 20."},{"q":"What is the private exponent d?","options":["3","11","7","9"],"answer":2,"explain":"d must satisfy e x d mod phi(n) = 1. 3 x 7 = 21 and 21 mod 20 = 1, so d = 7."},{"q":"What is the ciphertext C when the message M = 4 is encrypted?","options":["12","64","4","31"],"answer":3,"explain":"C = M^e mod n = 4^3 mod 33 = 64 mod 33 = 31."},{"q":"Which pair forms the public key?","options":["(7, 33)","(3, 20)","(3, 33)","(7, 20)"],"answer":2,"explain":"The public key is (e, n) = (3, 33); (d, n) = (7, 33) is the private key."}]},"lh2K_kDH5s0":{"questions":[{"q":"A digital (SSL/TLS) certificate is issued and signed by a:","options":["Web browser","Certificate Authority (CA)","DNS server","Internet Service Provider"],"answer":1,"explain":"A trusted Certificate Authority verifies the owner's identity and signs the certificate."},{"q":"Which standard defines the format of digital certificates used in SSL/TLS?","options":["X.25","ISO 9000","IEEE 802.11","X.509"],"answer":3,"explain":"SSL/TLS certificates follow the ITU-T X.509 standard."},{"q":"An SSL/TLS certificate sent by a web server contains the server's:","options":["Public key","Private key","Symmetric session key","Password hash"],"answer":0,"explain":"The certificate binds the server's identity to its public key; the private key is never shared."},{"q":"What is the default port number for HTTPS?","options":["80","8080","443","21"],"answer":2,"explain":"HTTPS (HTTP over SSL/TLS) uses port 443; plain HTTP uses port 80."},{"q":"A browser verifies the CA's signature on a server certificate using:","options":["The CA's private key","The server's private key","The CA's public key","The browser's own private key"],"answer":2,"explain":"The CA signs with its private key, so the signature is checked with the CA's public key stored in the browser."}]}};
+const PASS=3;
+const items=[...document.querySelectorAll('li[data-id]')];
+function isPassed(st,id){return !!(st[id]&&st[id].passed)}
+function render(){
+  const st=load();const free=loadFree();
+  const fr=document.getElementById('free');if(fr)fr.checked=free;
+  let gate=true,d=0,md=0,m=0;
+  items.forEach(li=>{
+    const id=li.dataset.id,must=li.dataset.lvl==='must';
+    const unlocked=free||!must||gate;
+    const passed=isPassed(st,id);
+    if(must)gate=unlocked&&passed;
+    li.classList.toggle('locked',!unlocked);li.classList.toggle('done',passed);
+    if(!unlocked)li.classList.remove('open');
+    li.querySelector('.st').textContent=passed?'✅':(unlocked?'▶️':'🔒');
+    const qb=li.querySelector('.qb');
+    if(qb.dataset.nomcq){qb.textContent=passed?'✅ Dekh liya':'✔ Dekh liya';}
+    else{const b=st[id]&&st[id].best;qb.textContent=passed?('✅ MCQ '+b+'/5'):(b!=null?('📝 MCQ '+b+'/5'):'📝 MCQ');}
+    qb.classList.toggle('passed',passed);
+    if(passed)d++;if(must){m++;if(passed)md++;}
+  });
+  document.querySelectorAll('section').forEach(sec=>{const l=[...sec.querySelectorAll('li[data-id]')];const c=sec.querySelector('.cnt');if(c)c.textContent=l.length?(l.filter(x=>x.classList.contains('done')).length+' / '+l.length+' pass'):'';});
+  document.getElementById('pt').textContent=d+' / '+items.length;document.getElementById('pm').textContent=md+' / '+m;document.getElementById('pb').style.width=(m?md/m*100:0)+'%';
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function buildQuiz(li){
+  const id=li.dataset.id,box=li.querySelector('.quiz'),set=MCQ[id];
+  box.classList.remove('checked');
+  let h='';
+  if(set.stem)h+='<div class="stem">'+esc(set.stem)+'</div>';
+  set.questions.forEach((q,qi)=>{
+    const ord=shuffle([0,1,2,3]);
+    h+='<div class="qq" data-q="'+qi+'"><div class="qt">Q'+(qi+1)+'. '+esc(q.q)+'</div>';
+    ord.forEach((oi,k)=>{h+='<label data-oi="'+oi+'"><input type="radio" name="'+id+'_'+qi+'" value="'+oi+'"><span>'+'ABCD'[k]+'. '+esc(q.options[oi])+'</span></label>';});
+    h+='<div class="ex">💡 '+esc(q.explain)+'</div></div>';
+  });
+  h+='<div class="qa"><button class="primary sub" type="button" disabled>Submit</button><span class="msg"></span></div>';
+  box.innerHTML=h;
+  const sub=box.querySelector('.sub');
+  box.addEventListener('change',()=>{const n=box.querySelectorAll('input[type=radio]:checked').length;sub.disabled=n<set.questions.length;});
+  sub.addEventListener('click',()=>{
+    let score=0;
+    set.questions.forEach((q,qi)=>{
+      const wrap=box.querySelector('.qq[data-q="'+qi+'"]');
+      const sel=wrap.querySelector('input:checked');const v=sel?+sel.value:-1;
+      if(v===q.answer)score++;
+      wrap.querySelectorAll('label').forEach(l=>{const oi=+l.dataset.oi;if(oi===q.answer)l.classList.add('right');else if(oi===v)l.classList.add('wrong');l.querySelector('input').disabled=true;});
+    });
+    box.classList.add('checked');
+    const st=load();const prev=st[id]||{};
+    st[id]={best:Math.max(prev.best||0,score),passed:!!prev.passed||score>=PASS};save(st);
+    const msg=box.querySelector('.msg');
+    if(score>=PASS){msg.className='msg ok';msg.textContent='Score '+score+'/5 — Pass! ✅'+(li.dataset.lvl==='must'?' Agla video unlock ho gaya.':'');}
+    else{msg.className='msg bad';msg.textContent='Score '+score+'/5 — Pass ke liye '+PASS+'/5 chahiye. Video dobara dekho aur Retry karo.';}
+    sub.remove();
+    const rt=document.createElement('button');rt.type='button';rt.textContent='Retry';rt.onclick=()=>buildQuiz(li);
+    box.querySelector('.qa').prepend(rt);
+    if(score>=PASS){const nx=items[items.indexOf(li)+1];if(nx){const b=document.createElement('button');b.type='button';b.textContent='Agla video →';b.onclick=()=>{li.classList.remove('open');nx.scrollIntoView({behavior:'smooth',block:'center'});};box.querySelector('.qa').append(b);}}
+    render();
+  });
+}
+items.forEach(li=>{
+  const qb=li.querySelector('.qb');
+  qb.addEventListener('click',()=>{
+    if(li.classList.contains('locked'))return;
+    if(qb.dataset.nomcq){const st=load();const id=li.dataset.id;if(st[id]&&st[id].passed)delete st[id];else st[id]={passed:true};save(st);render();return;}
+    const open=!li.classList.contains('open');
+    li.classList.toggle('open',open);
+    if(open&&!li.querySelector('.qq'))buildQuiz(li);
+  });
+});
+document.getElementById('free').addEventListener('change',e=>{saveFree(e.target.checked);render();});
+document.getElementById('clear').addEventListener('click',()=>{const cb=document.getElementById('clear');if(!cb.dataset.arm){cb.dataset.arm='1';cb.dataset.txt=cb.textContent;cb.textContent='Pakka reset? Dobara click karo';setTimeout(()=>{delete cb.dataset.arm;cb.textContent=cb.dataset.txt},4000);return;}delete cb.dataset.arm;cb.textContent=cb.dataset.txt;const st=load();items.forEach(li=>delete st[li.dataset.id]);save(st);items.forEach(li=>{li.classList.remove('open');li.querySelector('.quiz').innerHTML='';});render();});
+render();</script></body></html>

@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Web Technology – IBPS RRB IT</title><style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1b1f24;--muted:#5d6570;--line:#e2e5ea;--accent:#1d4e89;--accent-soft:#e8eff8;
+--must:#c0392b;--opt:#b7791f;--skip:#2f855a;--done:#8a929c;--bar:#2f855a;--ok:#2f855a;--ok-soft:#e6f4ec;--bad:#c0392b;--bad-soft:#fbeaea;--lock:#9aa1aa}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121417;--card:#1b1e23;--text:#e6e8eb;--muted:#9aa3ad;--line:#2c3037;
+--accent:#7fb0ee;--accent-soft:#1f2a38;--must:#f07167;--opt:#e0b04f;--skip:#5fc48a;--done:#6b737c;--bar:#5fc48a;--ok:#5fc48a;--ok-soft:#18301f;--bad:#f07167;--bad-soft:#3a1d1d;--lock:#5b626b}}
+:root[data-theme="dark"]{--bg:#121417;--card:#1b1e23;--text:#e6e8eb;--muted:#9aa3ad;--line:#2c3037;
+--accent:#7fb0ee;--accent-soft:#1f2a38;--must:#f07167;--opt:#e0b04f;--skip:#5fc48a;--done:#6b737c;--bar:#5fc48a;--ok:#5fc48a;--ok-soft:#18301f;--bad:#f07167;--bad-soft:#3a1d1d;--lock:#5b626b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 "Segoe UI","Nirmala UI",system-ui,-apple-system,Arial,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:20px 16px 48px}
+a{color:var(--accent)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.back{font-size:14px;text-decoration:none}
+h1{font-size:24px;margin:6px 0 4px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:12px}
+.pls a{display:inline-block;margin:2px 10px 2px 0}
+.progress{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:14px 0 18px;position:sticky;top:0;z-index:2}
+.progress .row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px;gap:8px;flex-wrap:wrap}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden}
+.bar>div{height:100%;background:var(--bar);width:0;transition:width .2s}
+.free{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:8px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:0 0 16px;overflow:hidden}
+section h2{font-size:16px;margin:0;padding:10px 14px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+section h2 .lvl{font-size:13px;font-weight:600}
+section.must h2 .lvl{color:var(--must)} section.opt h2 .lvl{color:var(--opt)}
+section h2 .cnt{margin-left:auto;font-size:13px;color:var(--muted);font-weight:400}
+ul.v{list-style:none;margin:0;padding:0}
+ul.v>li{border-top:1px solid var(--line)}
+ul.v>li:first-child{border-top:0}
+.r{display:flex;align-items:center;gap:10px;padding:8px 14px}
+.st{flex:none;width:22px;text-align:center;font-size:15px}
+.lec{flex:none;min-width:52px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.t{flex:1;min-width:0}
+.t a{text-decoration:none;color:var(--text)} .t a:hover{color:var(--accent);text-decoration:underline}
+.yt,.qb{flex:none;font:inherit;font-size:13px;text-decoration:none;padding:2px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--accent);cursor:pointer;white-space:nowrap}
+.qb.passed{color:var(--ok);border-color:var(--ok)}
+li.done .t a{color:var(--done)}
+li.locked .r{opacity:.55}
+li.locked .t a,li.locked .yt{pointer-events:none;color:var(--lock)}
+li.locked .qb{pointer-events:none;color:var(--lock)}
+.quiz{display:none;margin:0 14px 12px 46px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+li.open .quiz{display:block}
+.stem{white-space:pre-wrap;font-family:Consolas,"Cascadia Mono","Nirmala UI",monospace;font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px;margin:0 0 12px;overflow-x:auto}
+.qq{margin:0 0 14px}
+.qq .qt{font-weight:600;margin-bottom:6px;white-space:pre-wrap}
+.qq label{display:flex;gap:8px;align-items:flex-start;padding:5px 8px;border-radius:6px;cursor:pointer;border:1px solid transparent}
+.qq label:hover{background:var(--card)}
+.qq input{margin-top:4px;flex:none}
+.qq label.right{background:var(--ok-soft);border-color:var(--ok)}
+.qq label.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.qq .ex{display:none;font-size:13px;color:var(--muted);margin:6px 0 0 8px;white-space:pre-wrap}
+.quiz.checked .ex{display:block}
+.qa{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.qa .msg{font-size:14px;font-weight:600}
+.msg.ok{color:var(--ok)} .msg.bad{color:var(--bad)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 16px}
+.box h3{margin:0 0 6px;font-size:15px}
+.box.skip h3{color:var(--skip)}
+.box ul{margin:0;padding-left:20px}
+.btns{display:flex;gap:8px}
+button{font:inherit;font-size:13px;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:10px 0 22px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--accent)}
+.card .n{font-size:12px;color:var(--muted)} .card .h{font-weight:600;margin:2px 0 8px}
+.card .s{font-size:13px;color:var(--muted);margin-top:6px}
+h2.g{font-size:18px;margin:22px 0 4px}
+@media (max-width:560px){.lec{min-width:36px}.yt{display:none}.quiz{margin-left:14px}}
+@media print{.progress,.btns,.back,.qb,.quiz{display:none!important}body{background:#fff}section,.box{break-inside:avoid}li.locked .r{opacity:1}}
+
+.part{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:6px}
+section h2 .tn{flex:none;font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:5px;padding:1px 7px}
+.yt-real{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{flex:none;font-size:11px;border-radius:5px;padding:1px 6px;border:1px solid var(--line);color:var(--opt)}
+.see{padding:10px 14px;font-size:14px;color:var(--muted)}
+.see b{color:var(--text)}
+.toc{columns:2;column-gap:24px;margin:0;padding-left:20px;font-size:14px}
+.toc li{break-inside:avoid}
+.toc .c{color:var(--muted);font-size:12px}
+@media (max-width:560px){.toc{columns:1}}
+</style></head>
+<body><div class="wrap"><div class="top"><a class="back" href="00_Index.html">← Sabhi subjects</a>
+<div class="btns"><button id="clear">Progress reset</button><button onclick="window.print()">Print</button></div></div>
+<div class="part">Professional Knowledge (IT)</div>
+<h1>Web Technology</h1>
+<div class="meta"></div><div class="box"><h3>📋 Syllabus topics (PDF ke order mein)</h3><ol class="toc"><li><a href="#t1">Web Design Principles &amp; HTML</a> <span class="c">1 video</span></li><li><a href="#t2">CSS</a> <span class="c">1 video</span></li><li><a href="#t3">JavaScript</a> <span class="c">1 video</span></li><li><a href="#t4">XML</a> <span class="c">1 video</span></li><li><a href="#t5">PHP Basics (syllabus: Software Engineering)</a> <span class="c">1 video</span></li><li><a href="#t6">Priority Interrupt</a> <span class="c">→ doosri file</span></li><li><a href="#t7">Memory Organization</a> <span class="c">→ doosri file</span></li></ol></div><div class="progress"><div class="row"><span>🔴 Zaroor wale: <b id="pm">0</b></span><span>Kul pass: <b id="pt">0</b></span></div><div class="bar"><div id="pb"></div></div>
+<label class="free"><input type="checkbox" id="free"> Free mode — lock hata do (sabhi videos khule)</label></div>
+<div class="box"><h3>Kaise chalega</h3><ul><li>Video dekho → <b>📝 MCQ</b> kholo → 5 sawal karo. <b>3/5</b> sahi par ✅ pass aur agla video 🔓 unlock.</li><li>🔴 zaroor wale videos order mein khulte hain. 🟡 optional videos lock nahi karte.</li><li>Har video ke neeche uska <i>asli YouTube title</i> aur channel diya hai (sab URLs 30 Sep 2026 ko check kiye).</li></ul></div><section id="t1" class="must"><h2><span class="tn">Topic 1</span><span>Web Design Principles &amp; HTML</span><span class="cnt"></span></h2><ul class="v"><li data-id="Ut4RpySLM6Y" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/Ut4RpySLM6Y" target="_blank" rel="noopener">HTML in 9 Minutes (CodeWithHarry)</a><span class="yt-real" title="HTML in 9 Minutes (in Hindi) 🌐 — CodeWithHarry">YouTube: HTML in 9 Minutes (in Hindi) 🌐 — CodeWithHarry</span></span><a class="yt" href="https://youtu.be/Ut4RpySLM6Y" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li></ul></section><section id="t2" class="must"><h2><span class="tn">Topic 2</span><span>CSS</span><span class="cnt"></span></h2><ul class="v"><li data-id="AP3_V7KXHs4" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/AP3_V7KXHs4" target="_blank" rel="noopener">CSS in 7 Minutes (CodeWithHarry)</a><span class="yt-real" title="CSS in 7 Minutes 🔥 — CodeWithHarry">YouTube: CSS in 7 Minutes 🔥 — CodeWithHarry</span></span><a class="yt" href="https://youtu.be/AP3_V7KXHs4" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li></ul></section><section id="t3" class="must"><h2><span class="tn">Topic 3</span><span>JavaScript</span><span class="cnt"></span></h2><ul class="v"><li data-id="VoKFyB1q4fc" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/VoKFyB1q4fc" target="_blank" rel="noopener">JavaScript explained in 7 Minutes (GeeksforGeeks)</a><span class="yt-real" title="JavaScript explained in just 7 Minutes! — GeeksforGeeks">YouTube: JavaScript explained in just 7 Minutes! — GeeksforGeeks</span></span><a class="yt" href="https://youtu.be/VoKFyB1q4fc" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li></ul></section><section id="t4" class="must"><h2><span class="tn">Topic 4</span><span>XML</span><span class="cnt"></span></h2><ul class="v"><li data-id="k9owEd7es10" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/k9owEd7es10" target="_blank" rel="noopener">XML Introduction, HTML vs XML (Easy Engineering Classes)</a><span class="yt-real" title="L19: XML Introduction | Features, Advantages | Example | HTML vs. XML | Web Engineering Lectures — Easy Engineering Classes">YouTube: L19: XML Introduction | Features, Advantages | Example | HTML vs. XML | Web Engineering Lectures — Easy Engineering Classes</span></span><a class="yt" href="https://youtu.be/k9owEd7es10" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li></ul></section><section id="t5" class="must"><h2><span class="tn">Topic 5</span><span>PHP Basics (syllabus: Software Engineering)</span><span class="cnt"></span></h2><ul class="v"><li data-id="542oAYLGMNA" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/542oAYLGMNA" target="_blank" rel="noopener">PHP in 8 Minutes (CodeWithHarry)</a><span class="yt-real" title="PHP in 8 Minutes 🔥 — CodeWithHarry">YouTube: PHP in 8 Minutes 🔥 — CodeWithHarry</span></span><a class="yt" href="https://youtu.be/542oAYLGMNA" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li></ul></section><section id="t6" class="opt"><h2><span class="tn">Topic 6</span><span>Priority Interrupt</span><span class="cnt"></span></h2><div class="see">➡️ <b>Yahan video nahi:</b> Computer Architecture file (10) → Interrupts, Daisy Chaining.</div></section><section id="t7" class="opt"><h2><span class="tn">Topic 7</span><span>Memory Organization</span><span class="cnt"></span></h2><div class="see">➡️ <b>Yahan video nahi:</b> Computer Architecture file (10) → Memory Hierarchy, Cache.</div></section><div class="box"><h3>📝 Notes</h3><ul><li>Only basics are asked: HTML tags, CSS selectors, JavaScript basics, XML vs HTML, PHP basics. These short videos are enough; do not do a full course.</li></ul></div><div class="meta">Progress isi browser mein save hota hai.</div></div><script>
+const KEY='ibps-rrb-it-quiz';
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
+function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+function loadFree(){try{return localStorage.getItem('ibps-rrb-it-free')==='1'}catch(e){return false}}
+function saveFree(v){try{localStorage.setItem('ibps-rrb-it-free',v?'1':'0')}catch(e){}}
+
+const MCQ={"Ut4RpySLM6Y":{"questions":[{"q":"HTML stands for:","options":["High Transfer Markup Language","HyperText Markup Language","HyperText Machine Language","Hyperlink and Text Management Language"],"answer":1,"explain":"HTML is the standard markup language for web pages."},{"q":"Which heading tag gives the largest (most important) heading?","options":["h1","h6","head","heading"],"answer":0,"explain":"Headings go from h1 (largest) to h6 (smallest)."},{"q":"Which attribute of the anchor (a) tag specifies the destination of a link?","options":["src","alt","link","href"],"answer":3,"explain":"href holds the URL that the hyperlink points to."},{"q":"Which tag is used to create an ordered (numbered) list?","options":["ul","li","ol","dl"],"answer":2,"explain":"ol makes a numbered list, ul an unordered list, and li is each list item."},{"q":"What is the purpose of the alt attribute of the img tag?","options":["It gives alternative text shown if the image cannot be displayed","It sets the alignment of the image","It gives the file path of the image","It sets the height of the image"],"answer":0,"explain":"alt text is displayed (and read by screen readers) when the image is not shown."}]},"AP3_V7KXHs4":{"questions":[{"q":"CSS stands for:","options":["Creative Style Sheets","Computer Style Sheets","Cascading Style Sheets","Colourful Style Syntax"],"answer":2,"explain":"CSS is used to style HTML documents."},{"q":"Among these, which style normally has the highest priority?","options":["External style sheet","Inline style written in the style attribute of the element","Internal style sheet in the head section","Browser default style"],"answer":1,"explain":"Inline styles override internal and external style sheets (ignoring !important)."},{"q":"Which selector selects the element whose id is \"main\"?","options":[".main","main","*main","#main"],"answer":3,"explain":"In CSS, # selects by id and . selects by class."},{"q":"Which CSS property changes the colour of text?","options":["font-color","text-color","fgcolor","color"],"answer":3,"explain":"The color property sets text colour; background-color sets the background."},{"q":"In the CSS box model, what is the correct order from the inside to the outside?","options":["Content, margin, border, padding","Content, padding, border, margin","Padding, content, border, margin","Margin, border, padding, content"],"answer":1,"explain":"Padding surrounds content, the border surrounds padding, and margin is outside the border."}]},"VoKFyB1q4fc":{"questions":[{"q":"JavaScript is mainly known as a:","options":["Markup language for structuring pages","Query language for databases","Scripting language that runs in the web browser (client side)","Style sheet language for page design"],"answer":2,"explain":"JavaScript adds behaviour to web pages and runs in the browser; it can also run on servers via Node.js."},{"q":"What does typeof null return in JavaScript?","options":["\"object\"","\"null\"","\"undefined\"","\"number\""],"answer":0,"explain":"This is a well-known quirk: typeof null gives \"object\"."},{"q":"Which keyword declares a block-scoped variable that cannot be reassigned?","options":["let","const","var","static"],"answer":1,"explain":"const is block-scoped and cannot be reassigned; let is block-scoped but can be reassigned."},{"q":"What is the difference between == and === in JavaScript?","options":["=== compares value and type without type conversion; == converts types before comparing","== compares value and type; === compares only value","Both are identical in every case","=== is used only for strings"],"answer":0,"explain":"For example, 5 == \"5\" is true but 5 === \"5\" is false."},{"q":"What is the result of \"5\" + 2 in JavaScript?","options":["7","NaN","An error","\"52\""],"answer":3,"explain":"With + and a string operand, JavaScript converts 2 to a string and joins them: \"52\"."}]},"k9owEd7es10":{"questions":[{"q":"XML stands for:","options":["eXecutable Markup Language","eXtra Modern Language","eXtensible Markup Language","eXchange Model Language"],"answer":2,"explain":"XML is extensible because users define their own tags."},{"q":"What is the main purpose of XML compared with HTML?","options":["XML is used to store and carry data; HTML is used to display data","XML is used to display data; HTML is used to store data","Both are used only to style web pages","XML replaces JavaScript in web pages"],"answer":0,"explain":"HTML focuses on presentation, while XML describes and transports data."},{"q":"Which statement about XML is TRUE?","options":["XML has a fixed set of predefined tags","Closing tags are optional in XML","XML tags are case-sensitive","An XML document can have several root elements"],"answer":2,"explain":"In XML, \u003cName> and \u003cname> are different tags; tags are user-defined and must be closed."},{"q":"A well-formed XML document must have:","options":["At least two root elements","Exactly one root element","No attributes","Only predefined HTML tags"],"answer":1,"explain":"All other elements must be nested inside one single root element."},{"q":"Which is used to define the valid structure (allowed elements and attributes) of an XML document?","options":["CSS","XPath","JavaScript","DTD or XML Schema (XSD)"],"answer":3,"explain":"A DTD or XSD defines the rules; a document that follows them is called valid."}]},"542oAYLGMNA":{"questions":[{"q":"Today, PHP is a recursive acronym for:","options":["Private Home Page","Program Hypertext Processor","Preprocessed Hypertext Pages","PHP: Hypertext Preprocessor"],"answer":3,"explain":"PHP originally meant Personal Home Page; it now stands for PHP: Hypertext Preprocessor."},{"q":"PHP is a:","options":["Client-side scripting language run by the browser","Server-side scripting language","Markup language","Database management system"],"answer":1,"explain":"PHP code runs on the web server and sends the resulting HTML to the browser."},{"q":"In PHP, every variable name starts with the symbol:","options":["#","@","$","%"],"answer":2,"explain":"Example: $name = \"Ravi\";"},{"q":"Which operator joins (concatenates) two strings in PHP?","options":["Dot (.)","Plus (+)","Ampersand (&)","Hash (#)"],"answer":0,"explain":"Example: \"Hello\" . \" World\" gives \"Hello World\"."},{"q":"Which PHP superglobal holds form data sent with method=\"post\"?","options":["$_GET","$_POST","$_FORM","$_SEND"],"answer":1,"explain":"$_POST holds POST data; $_GET holds data sent in the URL query string."}]}};
+const PASS=3;
+const items=[...document.querySelectorAll('li[data-id]')];
+function isPassed(st,id){return !!(st[id]&&st[id].passed)}
+function render(){
+  const st=load();const free=loadFree();
+  const fr=document.getElementById('free');if(fr)fr.checked=free;
+  let gate=true,d=0,md=0,m=0;
+  items.forEach(li=>{
+    const id=li.dataset.id,must=li.dataset.lvl==='must';
+    const unlocked=free||!must||gate;
+    const passed=isPassed(st,id);
+    if(must)gate=unlocked&&passed;
+    li.classList.toggle('locked',!unlocked);li.classList.toggle('done',passed);
+    if(!unlocked)li.classList.remove('open');
+    li.querySelector('.st').textContent=passed?'✅':(unlocked?'▶️':'🔒');
+    const qb=li.querySelector('.qb');
+    if(qb.dataset.nomcq){qb.textContent=passed?'✅ Dekh liya':'✔ Dekh liya';}
+    else{const b=st[id]&&st[id].best;qb.textContent=passed?('✅ MCQ '+b+'/5'):(b!=null?('📝 MCQ '+b+'/5'):'📝 MCQ');}
+    qb.classList.toggle('passed',passed);
+    if(passed)d++;if(must){m++;if(passed)md++;}
+  });
+  document.querySelectorAll('section').forEach(sec=>{const l=[...sec.querySelectorAll('li[data-id]')];const c=sec.querySelector('.cnt');if(c)c.textContent=l.length?(l.filter(x=>x.classList.contains('done')).length+' / '+l.length+' pass'):'';});
+  document.getElementById('pt').textContent=d+' / '+items.length;document.getElementById('pm').textContent=md+' / '+m;document.getElementById('pb').style.width=(m?md/m*100:0)+'%';
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function buildQuiz(li){
+  const id=li.dataset.id,box=li.querySelector('.quiz'),set=MCQ[id];
+  box.classList.remove('checked');
+  let h='';
+  if(set.stem)h+='<div class="stem">'+esc(set.stem)+'</div>';
+  set.questions.forEach((q,qi)=>{
+    const ord=shuffle([0,1,2,3]);
+    h+='<div class="qq" data-q="'+qi+'"><div class="qt">Q'+(qi+1)+'. '+esc(q.q)+'</div>';
+    ord.forEach((oi,k)=>{h+='<label data-oi="'+oi+'"><input type="radio" name="'+id+'_'+qi+'" value="'+oi+'"><span>'+'ABCD'[k]+'. '+esc(q.options[oi])+'</span></label>';});
+    h+='<div class="ex">💡 '+esc(q.explain)+'</div></div>';
+  });
+  h+='<div class="qa"><button class="primary sub" type="button" disabled>Submit</button><span class="msg"></span></div>';
+  box.innerHTML=h;
+  const sub=box.querySelector('.sub');
+  box.addEventListener('change',()=>{const n=box.querySelectorAll('input[type=radio]:checked').length;sub.disabled=n<set.questions.length;});
+  sub.addEventListener('click',()=>{
+    let score=0;
+    set.questions.forEach((q,qi)=>{
+      const wrap=box.querySelector('.qq[data-q="'+qi+'"]');
+      const sel=wrap.querySelector('input:checked');const v=sel?+sel.value:-1;
+      if(v===q.answer)score++;
+      wrap.querySelectorAll('label').forEach(l=>{const oi=+l.dataset.oi;if(oi===q.answer)l.classList.add('right');else if(oi===v)l.classList.add('wrong');l.querySelector('input').disabled=true;});
+    });
+    box.classList.add('checked');
+    const st=load();const prev=st[id]||{};
+    st[id]={best:Math.max(prev.best||0,score),passed:!!prev.passed||score>=PASS};save(st);
+    const msg=box.querySelector('.msg');
+    if(score>=PASS){msg.className='msg ok';msg.textContent='Score '+score+'/5 — Pass! ✅'+(li.dataset.lvl==='must'?' Agla video unlock ho gaya.':'');}
+    else{msg.className='msg bad';msg.textContent='Score '+score+'/5 — Pass ke liye '+PASS+'/5 chahiye. Video dobara dekho aur Retry karo.';}
+    sub.remove();
+    const rt=document.createElement('button');rt.type='button';rt.textContent='Retry';rt.onclick=()=>buildQuiz(li);
+    box.querySelector('.qa').prepend(rt);
+    if(score>=PASS){const nx=items[items.indexOf(li)+1];if(nx){const b=document.createElement('button');b.type='button';b.textContent='Agla video →';b.onclick=()=>{li.classList.remove('open');nx.scrollIntoView({behavior:'smooth',block:'center'});};box.querySelector('.qa').append(b);}}
+    render();
+  });
+}
+items.forEach(li=>{
+  const qb=li.querySelector('.qb');
+  qb.addEventListener('click',()=>{
+    if(li.classList.contains('locked'))return;
+    if(qb.dataset.nomcq){const st=load();const id=li.dataset.id;if(st[id]&&st[id].passed)delete st[id];else st[id]={passed:true};save(st);render();return;}
+    const open=!li.classList.contains('open');
+    li.classList.toggle('open',open);
+    if(open&&!li.querySelector('.qq'))buildQuiz(li);
+  });
+});
+document.getElementById('free').addEventListener('change',e=>{saveFree(e.target.checked);render();});
+document.getElementById('clear').addEventListener('click',()=>{const cb=document.getElementById('clear');if(!cb.dataset.arm){cb.dataset.arm='1';cb.dataset.txt=cb.textContent;cb.textContent='Pakka reset? Dobara click karo';setTimeout(()=>{delete cb.dataset.arm;cb.textContent=cb.dataset.txt},4000);return;}delete cb.dataset.arm;cb.textContent=cb.dataset.txt;const st=load();items.forEach(li=>delete st[li.dataset.id]);save(st);items.forEach(li=>{li.classList.remove('open');li.querySelector('.quiz').innerHTML='';});render();});
+render();</script></body></html>

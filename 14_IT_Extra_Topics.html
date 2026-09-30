@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Java, Mobile, AI/ML, Core Banking – IBPS RRB IT</title><style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1b1f24;--muted:#5d6570;--line:#e2e5ea;--accent:#1d4e89;--accent-soft:#e8eff8;
+--must:#c0392b;--opt:#b7791f;--skip:#2f855a;--done:#8a929c;--bar:#2f855a;--ok:#2f855a;--ok-soft:#e6f4ec;--bad:#c0392b;--bad-soft:#fbeaea;--lock:#9aa1aa}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121417;--card:#1b1e23;--text:#e6e8eb;--muted:#9aa3ad;--line:#2c3037;
+--accent:#7fb0ee;--accent-soft:#1f2a38;--must:#f07167;--opt:#e0b04f;--skip:#5fc48a;--done:#6b737c;--bar:#5fc48a;--ok:#5fc48a;--ok-soft:#18301f;--bad:#f07167;--bad-soft:#3a1d1d;--lock:#5b626b}}
+:root[data-theme="dark"]{--bg:#121417;--card:#1b1e23;--text:#e6e8eb;--muted:#9aa3ad;--line:#2c3037;
+--accent:#7fb0ee;--accent-soft:#1f2a38;--must:#f07167;--opt:#e0b04f;--skip:#5fc48a;--done:#6b737c;--bar:#5fc48a;--ok:#5fc48a;--ok-soft:#18301f;--bad:#f07167;--bad-soft:#3a1d1d;--lock:#5b626b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 "Segoe UI","Nirmala UI",system-ui,-apple-system,Arial,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:20px 16px 48px}
+a{color:var(--accent)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.back{font-size:14px;text-decoration:none}
+h1{font-size:24px;margin:6px 0 4px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:12px}
+.pls a{display:inline-block;margin:2px 10px 2px 0}
+.progress{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:14px 0 18px;position:sticky;top:0;z-index:2}
+.progress .row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px;gap:8px;flex-wrap:wrap}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden}
+.bar>div{height:100%;background:var(--bar);width:0;transition:width .2s}
+.free{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:8px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:0 0 16px;overflow:hidden}
+section h2{font-size:16px;margin:0;padding:10px 14px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+section h2 .lvl{font-size:13px;font-weight:600}
+section.must h2 .lvl{color:var(--must)} section.opt h2 .lvl{color:var(--opt)}
+section h2 .cnt{margin-left:auto;font-size:13px;color:var(--muted);font-weight:400}
+ul.v{list-style:none;margin:0;padding:0}
+ul.v>li{border-top:1px solid var(--line)}
+ul.v>li:first-child{border-top:0}
+.r{display:flex;align-items:center;gap:10px;padding:8px 14px}
+.st{flex:none;width:22px;text-align:center;font-size:15px}
+.lec{flex:none;min-width:52px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.t{flex:1;min-width:0}
+.t a{text-decoration:none;color:var(--text)} .t a:hover{color:var(--accent);text-decoration:underline}
+.yt,.qb{flex:none;font:inherit;font-size:13px;text-decoration:none;padding:2px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--accent);cursor:pointer;white-space:nowrap}
+.qb.passed{color:var(--ok);border-color:var(--ok)}
+li.done .t a{color:var(--done)}
+li.locked .r{opacity:.55}
+li.locked .t a,li.locked .yt{pointer-events:none;color:var(--lock)}
+li.locked .qb{pointer-events:none;color:var(--lock)}
+.quiz{display:none;margin:0 14px 12px 46px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+li.open .quiz{display:block}
+.stem{white-space:pre-wrap;font-family:Consolas,"Cascadia Mono","Nirmala UI",monospace;font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px;margin:0 0 12px;overflow-x:auto}
+.qq{margin:0 0 14px}
+.qq .qt{font-weight:600;margin-bottom:6px;white-space:pre-wrap}
+.qq label{display:flex;gap:8px;align-items:flex-start;padding:5px 8px;border-radius:6px;cursor:pointer;border:1px solid transparent}
+.qq label:hover{background:var(--card)}
+.qq input{margin-top:4px;flex:none}
+.qq label.right{background:var(--ok-soft);border-color:var(--ok)}
+.qq label.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.qq .ex{display:none;font-size:13px;color:var(--muted);margin:6px 0 0 8px;white-space:pre-wrap}
+.quiz.checked .ex{display:block}
+.qa{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.qa .msg{font-size:14px;font-weight:600}
+.msg.ok{color:var(--ok)} .msg.bad{color:var(--bad)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 16px}
+.box h3{margin:0 0 6px;font-size:15px}
+.box.skip h3{color:var(--skip)}
+.box ul{margin:0;padding-left:20px}
+.btns{display:flex;gap:8px}
+button{font:inherit;font-size:13px;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:10px 0 22px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--accent)}
+.card .n{font-size:12px;color:var(--muted)} .card .h{font-weight:600;margin:2px 0 8px}
+.card .s{font-size:13px;color:var(--muted);margin-top:6px}
+h2.g{font-size:18px;margin:22px 0 4px}
+@media (max-width:560px){.lec{min-width:36px}.yt{display:none}.quiz{margin-left:14px}}
+@media print{.progress,.btns,.back,.qb,.quiz{display:none!important}body{background:#fff}section,.box{break-inside:avoid}li.locked .r{opacity:1}}
+
+.part{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:6px}
+section h2 .tn{flex:none;font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:5px;padding:1px 7px}
+.yt-real{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{flex:none;font-size:11px;border-radius:5px;padding:1px 6px;border:1px solid var(--line);color:var(--opt)}
+.see{padding:10px 14px;font-size:14px;color:var(--muted)}
+.see b{color:var(--text)}
+.toc{columns:2;column-gap:24px;margin:0;padding-left:20px;font-size:14px}
+.toc li{break-inside:avoid}
+.toc .c{color:var(--muted);font-size:12px}
+@media (max-width:560px){.toc{columns:1}}
+</style></head>
+<body><div class="wrap"><div class="top"><a class="back" href="00_Index.html">← Sabhi subjects</a>
+<div class="btns"><button id="clear">Progress reset</button><button onclick="window.print()">Print</button></div></div>
+<div class="part">Professional Knowledge — Additional IT areas</div>
+<h1>Java, Mobile, AI/ML, Core Banking</h1>
+<div class="meta"></div><div class="box"><h3>📋 Syllabus topics (PDF ke order mein)</h3><ol class="toc"><li><a href="#t1">Programming Languages (Java)</a> <span class="c">1 video</span></li><li><a href="#t2">Mobile Technologies</a> <span class="c">1 video</span></li><li><a href="#t3">Big Data, AI, Machine Learning (Basics)</a> <span class="c">2 video</span></li><li><a href="#t4">Core Banking Solutions</a> <span class="c">1 video</span></li><li><a href="#t5">Big Data &amp; Hadoop</a> <span class="c">→ doosri file</span></li><li><a href="#t6">Digital Payment Systems (UPI/NEFT/RTGS)</a> <span class="c">→ doosri file</span></li></ol></div><div class="progress"><div class="row"><span>🔴 Zaroor wale: <b id="pm">0</b></span><span>Kul pass: <b id="pt">0</b></span></div><div class="bar"><div id="pb"></div></div>
+<label class="free"><input type="checkbox" id="free"> Free mode — lock hata do (sabhi videos khule)</label></div>
+<div class="box"><h3>Kaise chalega</h3><ul><li>Video dekho → <b>📝 MCQ</b> kholo → 5 sawal karo. <b>3/5</b> sahi par ✅ pass aur agla video 🔓 unlock.</li><li>🔴 zaroor wale videos order mein khulte hain. 🟡 optional videos lock nahi karte.</li><li>Har video ke neeche uska <i>asli YouTube title</i> aur channel diya hai (sab URLs 30 Sep 2026 ko check kiye).</li></ul></div><section id="t1" class="must"><h2><span class="tn">Topic 1</span><span>Programming Languages (Java)</span><span class="cnt"></span></h2><ul class="v"><li data-id="WYpQ1VkXag0" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/WYpQ1VkXag0" target="_blank" rel="noopener">Introduction to Java (Learn Coding)</a><span class="yt-real" title="Introduction to Java (Hindi) | What is Java? Explain with Syntax and Example — Learn Coding">YouTube: Introduction to Java (Hindi) | What is Java? Explain with Syntax and Example — Learn Coding</span></span><a class="yt" href="https://youtu.be/WYpQ1VkXag0" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li></ul></section><section id="t2" class="must"><h2><span class="tn">Topic 2</span><span>Mobile Technologies</span><span class="cnt"></span></h2><ul class="v"><li data-id="CROM0W-Qt98" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/CROM0W-Qt98" target="_blank" rel="noopener">Mobile network generations 1G–5G (TB Hashman)</a><span class="yt-real" title="What is Mobile Network [Hindi] | Generations | Features | 1G, 2G, 3G, 4G &amp; 5G | by Taiyab Hashmi — TB Hashman">YouTube: What is Mobile Network [Hindi] | Generations | Features | 1G, 2G, 3G, 4G &amp; 5G | by Taiyab Hashmi — TB Hashman</span></span><a class="yt" href="https://youtu.be/CROM0W-Qt98" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li></ul></section><section id="t3" class="must"><h2><span class="tn">Topic 3</span><span>Big Data, AI, Machine Learning (Basics)</span><span class="cnt"></span></h2><ul class="v"><li data-id="s-s9ilkMVj8" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/s-s9ilkMVj8" target="_blank" rel="noopener">What is Artificial Intelligence (Gate Smashers)</a><span class="yt-real" title="Lec-3: What is Artificial Intelligence | Learn AI with Real Life Examples | Can Machine Think?? — Gate Smashers">YouTube: Lec-3: What is Artificial Intelligence | Learn AI with Real Life Examples | Can Machine Think?? — Gate Smashers</span></span><a class="yt" href="https://youtu.be/s-s9ilkMVj8" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li><li data-id="4dwsSz_fNSQ" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/4dwsSz_fNSQ" target="_blank" rel="noopener">Supervised, Unsupervised &amp; Reinforcement Learning (Gate Smashers)</a><span class="yt-real" title="Lec-37: Supervised, Unsupervised and Reinforcement Learning in Artificial Intelligence in Hindi — Gate Smashers">YouTube: Lec-37: Supervised, Unsupervised and Reinforcement Learning in Artificial Intelligence in Hindi — Gate Smashers</span></span><a class="yt" href="https://youtu.be/4dwsSz_fNSQ" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li></ul></section><section id="t4" class="must"><h2><span class="tn">Topic 4</span><span>Core Banking Solutions</span><span class="cnt"></span></h2><ul class="v"><li data-id="j3InaIPJx6g" data-lvl="must"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/j3InaIPJx6g" target="_blank" rel="noopener">Core Banking System (CBS): how it works (Exam Study Zone)</a><span class="yt-real" title="What is Core Banking System| How CBS works |Benefits of CBS|Banking Technology| — Exam Study Zone">YouTube: What is Core Banking System| How CBS works |Benefits of CBS|Banking Technology| — Exam Study Zone</span></span><a class="yt" href="https://youtu.be/j3InaIPJx6g" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button">📝 MCQ</button></div><div class="quiz"></div></li></ul></section><section id="t5" class="opt"><h2><span class="tn">Topic 5</span><span>Big Data &amp; Hadoop</span><span class="cnt"></span></h2><div class="see">➡️ <b>Yahan video nahi:</b> DBMS file (02) → Big Data, Hadoop videos.</div></section><section id="t6" class="opt"><h2><span class="tn">Topic 6</span><span>Digital Payment Systems (UPI/NEFT/RTGS)</span><span class="cnt"></span></h2><div class="see">➡️ <b>Yahan video nahi:</b> Financial Awareness file (20) → Payment Settlement System.</div></section><div class="box"><h3>📝 Notes</h3><ul><li>Digital payments (UPI, NEFT, RTGS, IMPS) are in 18_Financial_Awareness. Cyber security is in 12_Network_Security and 19_Computer_Knowledge.</li></ul></div><div class="meta">Progress isi browser mein save hota hai.</div></div><script>
+const KEY='ibps-rrb-it-quiz';
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
+function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+function loadFree(){try{return localStorage.getItem('ibps-rrb-it-free')==='1'}catch(e){return false}}
+function saveFree(v){try{localStorage.setItem('ibps-rrb-it-free',v?'1':'0')}catch(e){}}
+
+const MCQ={"WYpQ1VkXag0":{"questions":[{"q":"When a Java source file is compiled with javac, it produces:","options":["Bytecode in a .class file","Machine code in an .exe file","Assembly code in an .asm file","Source code in a .java file"],"answer":0,"explain":"javac converts .java files into platform-independent bytecode stored in .class files."},{"q":"Java bytecode is executed by the:","options":["Java Compiler (javac)","Operating system kernel directly","Web browser only","Java Virtual Machine (JVM)"],"answer":3,"explain":"The JVM interprets or JIT-compiles bytecode on each platform."},{"q":"The \"Write Once, Run Anywhere\" feature of Java is mainly due to:","options":["Use of pointers","Compilation directly into native machine code","Bytecode that can run on any platform having a JVM","Manual memory management"],"answer":2,"explain":"The same bytecode runs on any system with a suitable JVM, making Java platform independent."},{"q":"Java was originally developed by:","options":["James Gosling at Sun Microsystems","Dennis Ritchie at Bell Labs","Bjarne Stroustrup at Bell Labs","Guido van Rossum at CWI"],"answer":0,"explain":"Java was developed by James Gosling and team at Sun Microsystems and released in 1995."},{"q":"Which of the following is NOT supported in Java?","options":["Multithreading","Automatic garbage collection","Explicit pointer arithmetic","Platform independence"],"answer":2,"explain":"Java removed explicit pointers for safety; it supports multithreading and garbage collection."}]},"CROM0W-Qt98":{"questions":[{"q":"The first generation (1G) of mobile networks was based on:","options":["Digital voice with SMS","Analog voice communication","High-speed mobile broadband","Ultra-low latency IoT"],"answer":1,"explain":"1G (1980s) used analog signals only for voice calls."},{"q":"Which generation introduced digital voice and SMS, with GSM as its main standard?","options":["1G","3G","2G","4G"],"answer":2,"explain":"2G (GSM, CDMA) made voice digital and introduced SMS."},{"q":"LTE is the technology most associated with:","options":["4G","2G","3G","1G"],"answer":0,"explain":"LTE (Long Term Evolution) is the main 4G standard, giving all-IP mobile broadband."},{"q":"UMTS / WCDMA belong to which generation of mobile networks?","options":["2G","3G","4G","5G"],"answer":1,"explain":"3G (UMTS/WCDMA) brought mobile internet and video calling."},{"q":"Which feature is most closely associated with 5G?","options":["Ultra-low latency and support for a massive number of connected (IoT) devices","Analog voice-only calls","Introduction of SMS for the first time","Voice calls only on circuit-switched networks"],"answer":0,"explain":"5G offers very high speed, very low latency and massive machine connectivity."}]},"s-s9ilkMVj8":{"questions":[{"q":"The term \"Artificial Intelligence\" was coined by:","options":["Alan Turing","John McCarthy","Charles Babbage","Tim Berners-Lee"],"answer":1,"explain":"John McCarthy used the term at the Dartmouth conference in 1956."},{"q":"The Turing Test is used to check whether:","options":["A computer program has syntax errors","A network is secure from hackers","A processor is faster than another","A machine can show intelligent behaviour that cannot be told apart from a human"],"answer":3,"explain":"Alan Turing proposed the test in 1950: if a judge cannot tell machine from human, the machine passes."},{"q":"Narrow (weak) AI refers to:","options":["AI that has human-level intelligence in every field","AI that has feelings and consciousness","Any computer without an internet connection","AI designed to do a specific task, such as playing chess or recognising speech"],"answer":3,"explain":"All AI systems in practical use today are narrow AI built for particular tasks."},{"q":"Which statement correctly describes the relationship between AI, Machine Learning and Deep Learning?","options":["AI is a subset of Machine Learning","Deep Learning is a subset of Machine Learning, which is a subset of AI","Machine Learning is a subset of Deep Learning","The three are unrelated fields"],"answer":1,"explain":"AI is the broad field; ML learns from data; DL is ML using multi-layer neural networks."},{"q":"MYCIN, an early AI program used to diagnose bacterial infections, is an example of:","options":["A search engine","An operating system","An expert system","A compiler"],"answer":2,"explain":"An expert system uses a knowledge base and an inference engine to give expert-like advice."}]},"4dwsSz_fNSQ":{"questions":[{"q":"A model is trained on emails already marked \"spam\" or \"not spam\". This is:","options":["Supervised learning","Unsupervised learning","Reinforcement learning","No learning"],"answer":0,"explain":"Training on labelled data (input with correct output) is supervised learning."},{"q":"A bank groups its customers into segments based on spending patterns without any predefined labels. This is:","options":["Supervised learning","Unsupervised learning","Reinforcement learning","Regression"],"answer":1,"explain":"Finding groups in unlabelled data (clustering) is unsupervised learning."},{"q":"An agent learns to play a game by receiving rewards for good moves and penalties for bad moves. This is:","options":["Reinforcement learning","Supervised learning","Unsupervised learning","Association rule mining"],"answer":0,"explain":"Reinforcement learning uses trial and error with rewards and penalties."},{"q":"Predicting the price of a house (a continuous value) from its features is an example of:","options":["Classification","Clustering","Association","Regression"],"answer":3,"explain":"Regression predicts a continuous number; classification predicts a category."},{"q":"K-means is an example of:","options":["A supervised classification algorithm","A reinforcement learning algorithm","An unsupervised clustering algorithm","A sorting algorithm"],"answer":2,"explain":"K-means groups unlabelled data points into K clusters."}]},"j3InaIPJx6g":{"questions":[{"q":"In Core Banking System (CBS), the word CORE stands for:","options":["Centralised Online Real-time Exchange","Customer Oriented Real-time Environment","Central Operating Reserve Entry","Computerised Online Record Exchange"],"answer":0,"explain":"CORE = Centralised Online Real-time Exchange."},{"q":"In a CBS, customer account data and transactions are stored in:","options":["Separate stand-alone computers at each branch","The Reserve Bank of India's server","A central data centre (central server) of the bank","Paper ledgers at the home branch"],"answer":2,"explain":"All branches connect to one central database, so records are updated centrally in real time."},{"q":"The biggest benefit of CBS for customers is that:","options":["Their accounts no longer need KYC","They can transact from any branch of the bank, as they become customers of the bank rather than of one branch","They get higher interest on all deposits","They can operate accounts only at the home branch"],"answer":1,"explain":"Because data is central, \"anywhere banking\" becomes possible across all branches."},{"q":"Finacle, a widely used core banking software, is developed by:","options":["Wipro","HCL Technologies","Tech Mahindra","Infosys"],"answer":3,"explain":"Finacle is the core banking product of Infosys (TCS offers a different product, BaNCS)."},{"q":"For CBS to work in real time, which of the following is essential?","options":["A separate database at every branch","Daily manual posting of transactions at the end of the day","A different software at each branch","Reliable network connectivity between branches and the central data centre"],"answer":3,"explain":"Branches must be networked to the central server so transactions are updated online in real time."}]}};
+const PASS=3;
+const items=[...document.querySelectorAll('li[data-id]')];
+function isPassed(st,id){return !!(st[id]&&st[id].passed)}
+function render(){
+  const st=load();const free=loadFree();
+  const fr=document.getElementById('free');if(fr)fr.checked=free;
+  let gate=true,d=0,md=0,m=0;
+  items.forEach(li=>{
+    const id=li.dataset.id,must=li.dataset.lvl==='must';
+    const unlocked=free||!must||gate;
+    const passed=isPassed(st,id);
+    if(must)gate=unlocked&&passed;
+    li.classList.toggle('locked',!unlocked);li.classList.toggle('done',passed);
+    if(!unlocked)li.classList.remove('open');
+    li.querySelector('.st').textContent=passed?'✅':(unlocked?'▶️':'🔒');
+    const qb=li.querySelector('.qb');
+    if(qb.dataset.nomcq){qb.textContent=passed?'✅ Dekh liya':'✔ Dekh liya';}
+    else{const b=st[id]&&st[id].best;qb.textContent=passed?('✅ MCQ '+b+'/5'):(b!=null?('📝 MCQ '+b+'/5'):'📝 MCQ');}
+    qb.classList.toggle('passed',passed);
+    if(passed)d++;if(must){m++;if(passed)md++;}
+  });
+  document.querySelectorAll('section').forEach(sec=>{const l=[...sec.querySelectorAll('li[data-id]')];const c=sec.querySelector('.cnt');if(c)c.textContent=l.length?(l.filter(x=>x.classList.contains('done')).length+' / '+l.length+' pass'):'';});
+  document.getElementById('pt').textContent=d+' / '+items.length;document.getElementById('pm').textContent=md+' / '+m;document.getElementById('pb').style.width=(m?md/m*100:0)+'%';
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function buildQuiz(li){
+  const id=li.dataset.id,box=li.querySelector('.quiz'),set=MCQ[id];
+  box.classList.remove('checked');
+  let h='';
+  if(set.stem)h+='<div class="stem">'+esc(set.stem)+'</div>';
+  set.questions.forEach((q,qi)=>{
+    const ord=shuffle([0,1,2,3]);
+    h+='<div class="qq" data-q="'+qi+'"><div class="qt">Q'+(qi+1)+'. '+esc(q.q)+'</div>';
+    ord.forEach((oi,k)=>{h+='<label data-oi="'+oi+'"><input type="radio" name="'+id+'_'+qi+'" value="'+oi+'"><span>'+'ABCD'[k]+'. '+esc(q.options[oi])+'</span></label>';});
+    h+='<div class="ex">💡 '+esc(q.explain)+'</div></div>';
+  });
+  h+='<div class="qa"><button class="primary sub" type="button" disabled>Submit</button><span class="msg"></span></div>';
+  box.innerHTML=h;
+  const sub=box.querySelector('.sub');
+  box.addEventListener('change',()=>{const n=box.querySelectorAll('input[type=radio]:checked').length;sub.disabled=n<set.questions.length;});
+  sub.addEventListener('click',()=>{
+    let score=0;
+    set.questions.forEach((q,qi)=>{
+      const wrap=box.querySelector('.qq[data-q="'+qi+'"]');
+      const sel=wrap.querySelector('input:checked');const v=sel?+sel.value:-1;
+      if(v===q.answer)score++;
+      wrap.querySelectorAll('label').forEach(l=>{const oi=+l.dataset.oi;if(oi===q.answer)l.classList.add('right');else if(oi===v)l.classList.add('wrong');l.querySelector('input').disabled=true;});
+    });
+    box.classList.add('checked');
+    const st=load();const prev=st[id]||{};
+    st[id]={best:Math.max(prev.best||0,score),passed:!!prev.passed||score>=PASS};save(st);
+    const msg=box.querySelector('.msg');
+    if(score>=PASS){msg.className='msg ok';msg.textContent='Score '+score+'/5 — Pass! ✅'+(li.dataset.lvl==='must'?' Agla video unlock ho gaya.':'');}
+    else{msg.className='msg bad';msg.textContent='Score '+score+'/5 — Pass ke liye '+PASS+'/5 chahiye. Video dobara dekho aur Retry karo.';}
+    sub.remove();
+    const rt=document.createElement('button');rt.type='button';rt.textContent='Retry';rt.onclick=()=>buildQuiz(li);
+    box.querySelector('.qa').prepend(rt);
+    if(score>=PASS){const nx=items[items.indexOf(li)+1];if(nx){const b=document.createElement('button');b.type='button';b.textContent='Agla video →';b.onclick=()=>{li.classList.remove('open');nx.scrollIntoView({behavior:'smooth',block:'center'});};box.querySelector('.qa').append(b);}}
+    render();
+  });
+}
+items.forEach(li=>{
+  const qb=li.querySelector('.qb');
+  qb.addEventListener('click',()=>{
+    if(li.classList.contains('locked'))return;
+    if(qb.dataset.nomcq){const st=load();const id=li.dataset.id;if(st[id]&&st[id].passed)delete st[id];else st[id]={passed:true};save(st);render();return;}
+    const open=!li.classList.contains('open');
+    li.classList.toggle('open',open);
+    if(open&&!li.querySelector('.qq'))buildQuiz(li);
+  });
+});
+document.getElementById('free').addEventListener('change',e=>{saveFree(e.target.checked);render();});
+document.getElementById('clear').addEventListener('click',()=>{const cb=document.getElementById('clear');if(!cb.dataset.arm){cb.dataset.arm='1';cb.dataset.txt=cb.textContent;cb.textContent='Pakka reset? Dobara click karo';setTimeout(()=>{delete cb.dataset.arm;cb.textContent=cb.dataset.txt},4000);return;}delete cb.dataset.arm;cb.textContent=cb.dataset.txt;const st=load();items.forEach(li=>delete st[li.dataset.id]);save(st);items.forEach(li=>{li.classList.remove('open');li.querySelector('.quiz').innerHTML='';});render();});
+render();</script></body></html>
