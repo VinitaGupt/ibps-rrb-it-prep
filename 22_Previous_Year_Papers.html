@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>Previous Year Papers (Memory-based) – IBPS RRB IT</title><style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1b1f24;--muted:#5d6570;--line:#e2e5ea;--accent:#1d4e89;--accent-soft:#e8eff8;
+--must:#c0392b;--opt:#b7791f;--skip:#2f855a;--done:#8a929c;--bar:#2f855a;--ok:#2f855a;--ok-soft:#e6f4ec;--bad:#c0392b;--bad-soft:#fbeaea;--lock:#9aa1aa}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121417;--card:#1b1e23;--text:#e6e8eb;--muted:#9aa3ad;--line:#2c3037;
+--accent:#7fb0ee;--accent-soft:#1f2a38;--must:#f07167;--opt:#e0b04f;--skip:#5fc48a;--done:#6b737c;--bar:#5fc48a;--ok:#5fc48a;--ok-soft:#18301f;--bad:#f07167;--bad-soft:#3a1d1d;--lock:#5b626b}}
+:root[data-theme="dark"]{--bg:#121417;--card:#1b1e23;--text:#e6e8eb;--muted:#9aa3ad;--line:#2c3037;
+--accent:#7fb0ee;--accent-soft:#1f2a38;--must:#f07167;--opt:#e0b04f;--skip:#5fc48a;--done:#6b737c;--bar:#5fc48a;--ok:#5fc48a;--ok-soft:#18301f;--bad:#f07167;--bad-soft:#3a1d1d;--lock:#5b626b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 "Segoe UI","Nirmala UI",system-ui,-apple-system,Arial,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:20px 16px 48px}
+a{color:var(--accent)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.back{font-size:14px;text-decoration:none}
+h1{font-size:24px;margin:6px 0 4px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:12px}
+.pls a{display:inline-block;margin:2px 10px 2px 0}
+.progress{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:14px 0 18px;position:sticky;top:0;z-index:2}
+.progress .row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px;gap:8px;flex-wrap:wrap}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden}
+.bar>div{height:100%;background:var(--bar);width:0;transition:width .2s}
+.free{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:8px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:0 0 16px;overflow:hidden}
+section h2{font-size:16px;margin:0;padding:10px 14px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+section h2 .lvl{font-size:13px;font-weight:600}
+section.must h2 .lvl{color:var(--must)} section.opt h2 .lvl{color:var(--opt)}
+section h2 .cnt{margin-left:auto;font-size:13px;color:var(--muted);font-weight:400}
+ul.v{list-style:none;margin:0;padding:0}
+ul.v>li{border-top:1px solid var(--line)}
+ul.v>li:first-child{border-top:0}
+.r{display:flex;align-items:center;gap:10px;padding:8px 14px}
+.st{flex:none;width:22px;text-align:center;font-size:15px}
+.lec{flex:none;min-width:52px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.t{flex:1;min-width:0}
+.t a{text-decoration:none;color:var(--text)} .t a:hover{color:var(--accent);text-decoration:underline}
+.yt,.qb{flex:none;font:inherit;font-size:13px;text-decoration:none;padding:2px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--accent);cursor:pointer;white-space:nowrap}
+.qb.passed{color:var(--ok);border-color:var(--ok)}
+li.done .t a{color:var(--done)}
+li.locked .r{opacity:.55}
+li.locked .t a,li.locked .yt{pointer-events:none;color:var(--lock)}
+li.locked .qb{pointer-events:none;color:var(--lock)}
+.quiz{display:none;margin:0 14px 12px 46px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+li.open .quiz{display:block}
+.stem{white-space:pre-wrap;font-family:Consolas,"Cascadia Mono","Nirmala UI",monospace;font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px;margin:0 0 12px;overflow-x:auto}
+.qq{margin:0 0 14px}
+.qq .qt{font-weight:600;margin-bottom:6px;white-space:pre-wrap}
+.qq label{display:flex;gap:8px;align-items:flex-start;padding:5px 8px;border-radius:6px;cursor:pointer;border:1px solid transparent}
+.qq label:hover{background:var(--card)}
+.qq input{margin-top:4px;flex:none}
+.qq label.right{background:var(--ok-soft);border-color:var(--ok)}
+.qq label.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.qq .ex{display:none;font-size:13px;color:var(--muted);margin:6px 0 0 8px;white-space:pre-wrap}
+.quiz.checked .ex{display:block}
+.qa{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.qa .msg{font-size:14px;font-weight:600}
+.msg.ok{color:var(--ok)} .msg.bad{color:var(--bad)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 16px}
+.box h3{margin:0 0 6px;font-size:15px}
+.box.skip h3{color:var(--skip)}
+.box ul{margin:0;padding-left:20px}
+.btns{display:flex;gap:8px}
+button{font:inherit;font-size:13px;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:10px 0 22px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--accent)}
+.card .n{font-size:12px;color:var(--muted)} .card .h{font-weight:600;margin:2px 0 8px}
+.card .s{font-size:13px;color:var(--muted);margin-top:6px}
+h2.g{font-size:18px;margin:22px 0 4px}
+@media (max-width:560px){.lec{min-width:36px}.yt{display:none}.quiz{margin-left:14px}}
+@media print{.progress,.btns,.back,.qb,.quiz{display:none!important}body{background:#fff}section,.box{break-inside:avoid}li.locked .r{opacity:1}}
+
+.part{font-size:13px;color:var(--muted);text-transform:uppercase;letter-spacing:.04em;margin-top:6px}
+section h2 .tn{flex:none;font-size:12px;font-weight:600;color:var(--accent);background:var(--accent-soft);border-radius:5px;padding:1px 7px}
+.yt-real{display:block;font-size:12px;color:var(--muted);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.badge{flex:none;font-size:11px;border-radius:5px;padding:1px 6px;border:1px solid var(--line);color:var(--opt)}
+.see{padding:10px 14px;font-size:14px;color:var(--muted)}
+.see b{color:var(--text)}
+.toc{columns:2;column-gap:24px;margin:0;padding-left:20px;font-size:14px}
+.toc li{break-inside:avoid}
+.toc .c{color:var(--muted);font-size:12px}
+@media (max-width:560px){.toc{columns:1}}
+</style></head>
+<body><div class="wrap"><div class="top"><a class="back" href="00_Index.html">← Sabhi subjects</a>
+<div class="btns"><button id="clear">Progress reset</button><button onclick="window.print()">Print</button></div></div>
+<div class="part">Previous Year Papers</div>
+<h1>Previous Year Papers (Memory-based)</h1>
+<div class="meta"></div><div class="box"><h3>📋 Saal-wise sections</h3><ol class="toc"><li><a href="#t1">Professional Knowledge (IT) – PYQ collection</a> <span class="c">4 video</span></li><li><a href="#t2">2025 exam (Dec 2025)</a> <span class="c">5 video</span></li><li><a href="#t3">2024 exam</a> <span class="c">4 video</span></li><li><a href="#t4">2023 exam</a> <span class="c">1 video</span></li><li><a href="#t5">2022 exam</a> <span class="c">3 video</span></li><li><a href="#t6">2021 &amp; 2020 exams</a> <span class="c">2 video</span></li><li><a href="#t7">Quant – previous years based full paper</a> <span class="c">1 video</span></li><li><a href="#t8">Cut-off trend (last 5 years)</a> <span class="c">2 video</span></li></ol></div><div class="progress"><div class="row"><span style="display:none">🔴 Zaroor wale: <b id="pm">0</b></span><span>Kul pass: <b id="pt">0</b></span></div><div class="bar" style="display:none"><div id="pb"></div></div>
+<label class="free" style="display:none"><input type="checkbox" id="free"> Free mode — lock hata do (sabhi videos khule)</label></div>
+<div class="box"><h3>📄 Papers kahan milenge</h3><ul><li>IBPS asli question paper release nahi karta. Neeche ke sab papers aur videos <b>memory-based</b> hain, jo candidates ne exam ke baad yaad karke banaye.</li><li><b>Poora paper khud attempt karo (free, sirf sign-up):</b> <a href="https://www.ixambee.com/previous-year-question-paper/ibps-rrb-scale-ii" target="_blank" rel="noopener">ixamBee – IBPS RRB SO Scale II (IT Officer) 2025, 2023, 2022 papers</a>. 240 sawal, 150 minute, bilkul asli exam jaisa.</li><li>Reasoning, Quant, English aur Financial Awareness ke general sections GBO ke saath common hain: <a href="https://www.ixambee.com/previous-year-question-paper/ibps-rrb-scale-ii-general-banking-officer-gbo" target="_blank" rel="noopener">ixamBee – IBPS RRB Scale II GBO papers</a>.</li><li>Tarika: pehle paper timer laga ke khud do, phir us saal ka video dekh ke galtiyan samjho. Saare videos 🟡 optional hain, koi lock nahi.</li></ul></div><section id="t1" class="opt"><h2><span class="tn">Topic 1</span><span>Professional Knowledge (IT) – PYQ collection</span><span class="cnt"></span></h2><ul class="v"><li data-id="9Jx9eU_B-2g" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/9Jx9eU_B-2g" target="_blank" rel="noopener">Professional Knowledge Previous Year Paper (Khan Sir)</a><span class="yt-real" title="IBPS RRB SO IT Officer 2026 | Professional Knowledge | Previous Year Paper | Khan Sir | Oliveboard — Oliveboard">YouTube: IBPS RRB SO IT Officer 2026 | Professional Knowledge | Previous Year Paper | Khan Sir | Oliveboard — Oliveboard</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/9Jx9eU_B-2g" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li><li data-id="LysXMI94Pic" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/LysXMI94Pic" target="_blank" rel="noopener">IT Officer Previous Years MCQ with Explanation – Class 1</a><span class="yt-real" title="IBPS RRB SCALE 2 | IT Officer Class - 1 | Previous Years MCQ with Explanation By-Puneet Sir — Knowledgist ® ">YouTube: IBPS RRB SCALE 2 | IT Officer Class - 1 | Previous Years MCQ with Explanation By-Puneet Sir — Knowledgist ® </span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/LysXMI94Pic" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li><li data-id="wHEhEvgUCDU" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/wHEhEvgUCDU" target="_blank" rel="noopener">IBPS &amp; RRB SO IT – Most Repeated MCQs Part 1</a><span class="yt-real" title="IBPS &amp; RRB SO IT Officer 2025 | Most Repeated MCQs Part-1 | Must Watch Before Exam | By Khan Sir — Oliveboard">YouTube: IBPS &amp; RRB SO IT Officer 2025 | Most Repeated MCQs Part-1 | Must Watch Before Exam | By Khan Sir — Oliveboard</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/wHEhEvgUCDU" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li><li data-id="wdZoG8tRhoQ" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/wdZoG8tRhoQ" target="_blank" rel="noopener">Java PYQs for IT Officer exams</a><span class="yt-real" title="Java PYQs for IT Officer Exams IBPS,UPCE,RRB,SEBI,Nabard — Good IT Officer">YouTube: Java PYQs for IT Officer Exams IBPS,UPCE,RRB,SEBI,Nabard — Good IT Officer</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/wdZoG8tRhoQ" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li></ul></section><section id="t2" class="opt"><h2><span class="tn">Topic 2</span><span>2025 exam (Dec 2025)</span><span class="cnt"></span></h2><ul class="v"><li data-id="5pjT-4TM3oE" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/5pjT-4TM3oE" target="_blank" rel="noopener">RRB SO IT Scale 2 – Self-given analysis Part 1</a><span class="yt-real" title="IBPS RRB SO Scale IT 2 Self Given Analysis Part 1 — Next Officer">YouTube: IBPS RRB SO Scale IT 2 Self Given Analysis Part 1 — Next Officer</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/5pjT-4TM3oE" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li><li data-id="w_hq_a-Ev3Q" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/w_hq_a-Ev3Q" target="_blank" rel="noopener">RRB SO IT Scale 2 – Self-given analysis Part 2</a><span class="yt-real" title="IBPS RRB SO IT Scale 2 Self Given Analysis Part 2 — Next Officer">YouTube: IBPS RRB SO IT Scale 2 Self Given Analysis Part 2 — Next Officer</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/w_hq_a-Ev3Q" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li><li data-id="6mZ8zUFZU_Y" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/6mZ8zUFZU_Y" target="_blank" rel="noopener">Memory Based Questions – RRB Scale 2 &amp; 3 2025</a><span class="yt-real" title="Memory Based Questions RRB Scale 2 &amp; 3 - 2025 | @ThePieRSquare — The Pie R Square">YouTube: Memory Based Questions RRB Scale 2 &amp; 3 - 2025 | @ThePieRSquare — The Pie R Square</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/6mZ8zUFZU_Y" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li><li data-id="A7gUfKS62qU" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/A7gUfKS62qU" target="_blank" rel="noopener">IBPS RRB Scale 2 2025 – Exam Analysis</a><span class="yt-real" title="IBPS RRB SCALE 2 2025 |  Exam Analysis — ixamBee - Banking and Insurance Job Preparation">YouTube: IBPS RRB SCALE 2 2025 |  Exam Analysis — ixamBee - Banking and Insurance Job Preparation</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/A7gUfKS62qU" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li><li data-id="gRtJD9weX5M" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/gRtJD9weX5M" target="_blank" rel="noopener">RRB Scale 2 Computer Exam Analysis 2025</a><span class="yt-real" title="IBPS RRB GBO Computer Analysis 2025 | RRB Scale 2 Computer Exam Analysis | IBPS RRB SO Computer | — Arora Educator">YouTube: IBPS RRB GBO Computer Analysis 2025 | RRB Scale 2 Computer Exam Analysis | IBPS RRB SO Computer | — Arora Educator</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/gRtJD9weX5M" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li></ul></section><section id="t3" class="opt"><h2><span class="tn">Topic 3</span><span>2024 exam</span><span class="cnt"></span></h2><ul class="v"><li data-id="CDF1FOTIIgU" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/CDF1FOTIIgU" target="_blank" rel="noopener">RRB SO IT 2024 PYQ – Part 1</a><span class="yt-real" title="RRB SO IT 2024 PYQ PART 1 — Good IT Officer">YouTube: RRB SO IT 2024 PYQ PART 1 — Good IT Officer</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/CDF1FOTIIgU" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li><li data-id="YWYuDAKdFmk" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/YWYuDAKdFmk" target="_blank" rel="noopener">RRB SO IT 2024 PYQ – Part 2</a><span class="yt-real" title="RRB SO IT 2024 PYQ PART 2 — Good IT Officer">YouTube: RRB SO IT 2024 PYQ PART 2 — Good IT Officer</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/YWYuDAKdFmk" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li><li data-id="qsUbUl8PH8s" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/qsUbUl8PH8s" target="_blank" rel="noopener">IBPS RRB Scale 2 Exam Analysis 2024 – Complete Paper Review</a><span class="yt-real" title="IBPS RRB Scale 2 Exam Analysis 2024 📝 Complete Paper Review | Question Pattern Asked 📊 — Bankers Grade">YouTube: IBPS RRB Scale 2 Exam Analysis 2024 📝 Complete Paper Review | Question Pattern Asked 📊 — Bankers Grade</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/qsUbUl8PH8s" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li><li data-id="hOxiST1vog0" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/hOxiST1vog0" target="_blank" rel="noopener">2024 &amp; 2025 Complete Question Analysis (Scale 2 &amp; 3)</a><span class="yt-real" title="IBPS RRB Scale 2 &amp; 3 2026 | What to Expect in the Exam? 📑 | 2024 &amp; 2025 Complete Question Analysis🎯 — Bankers Grade">YouTube: IBPS RRB Scale 2 &amp; 3 2026 | What to Expect in the Exam? 📑 | 2024 &amp; 2025 Complete Question Analysis🎯 — Bankers Grade</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/hOxiST1vog0" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li></ul></section><section id="t4" class="opt"><h2><span class="tn">Topic 4</span><span>2023 exam</span><span class="cnt"></span></h2><ul class="v"><li data-id="FHLE6atpND8" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/FHLE6atpND8" target="_blank" rel="noopener">Scale II 2023 – Govt Schemes questions asked in real exam</a><span class="yt-real" title="IBPS RRB Scale II 2023: Govt Schemes Questions asked in Real Exam — BankExamsToday">YouTube: IBPS RRB Scale II 2023: Govt Schemes Questions asked in Real Exam — BankExamsToday</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/FHLE6atpND8" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li></ul></section><section id="t5" class="opt"><h2><span class="tn">Topic 5</span><span>2022 exam</span><span class="cnt"></span></h2><ul class="v"><li data-id="q6KgdmD1JPk" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/q6KgdmD1JPk" target="_blank" rel="noopener">Officer Scale 2 &amp; 3 Computer Previous Year Questions 2022 – Part 1</a><span class="yt-real" title="IBPS RRB -2023 | IBPS RRB Officer Scale 2 &amp; 3 Computer Previous year Question 2022 (Part-1) — Adda247 Banking Exams">YouTube: IBPS RRB -2023 | IBPS RRB Officer Scale 2 &amp; 3 Computer Previous year Question 2022 (Part-1) — Adda247 Banking Exams</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/q6KgdmD1JPk" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li><li data-id="8_MRA8mkP0A" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/8_MRA8mkP0A" target="_blank" rel="noopener">Scale 2 Computer Awareness Previous Year Questions 2022</a><span class="yt-real" title="IBPS RRB Scale2 | Computer Awareness | Previous Year Questions 2022 By Vivek Pandey — Adda247 Banking Exams">YouTube: IBPS RRB Scale2 | Computer Awareness | Previous Year Questions 2022 By Vivek Pandey — Adda247 Banking Exams</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/8_MRA8mkP0A" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li><li data-id="CpT1b6CdcuY" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/CpT1b6CdcuY" target="_blank" rel="noopener">RRB 2022 GBO/SO Scale-II – Maths Previous Year Paper</a><span class="yt-real" title="IBPS RRB 2022 GBO/SO Scale-II | Previous Year Paper Discussion | Maths by Siddharth Srivastava — Adda247 Banking Exams">YouTube: IBPS RRB 2022 GBO/SO Scale-II | Previous Year Paper Discussion | Maths by Siddharth Srivastava — Adda247 Banking Exams</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/CpT1b6CdcuY" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li></ul></section><section id="t6" class="opt"><h2><span class="tn">Topic 6</span><span>2021 &amp; 2020 exams</span><span class="cnt"></span></h2><ul class="v"><li data-id="qrdDgiESTgg" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/qrdDgiESTgg" target="_blank" rel="noopener">Scale 2 &amp; 3 Exam Analysis – GBO and SO 2021</a><span class="yt-real" title="IBPS RRB Scale 2 &amp; 3 | Exam Analysis | GBO and SO 2021 | Expected Cut Off — Knowledgist ® ">YouTube: IBPS RRB Scale 2 &amp; 3 | Exam Analysis | GBO and SO 2021 | Expected Cut Off — Knowledgist ® </span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/qrdDgiESTgg" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li><li data-id="KELWhw_U160" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/KELWhw_U160" target="_blank" rel="noopener">Officer Scale 2 &amp; 3 Computer Previous Year Questions 2020 – Part 1</a><span class="yt-real" title="IBPS RRB 2023 | IBPS RRB Officer Scale 2 &amp; 3 Computer Previous year Question 2020 (Part-1) — Adda247 Banking Exams">YouTube: IBPS RRB 2023 | IBPS RRB Officer Scale 2 &amp; 3 Computer Previous year Question 2020 (Part-1) — Adda247 Banking Exams</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/KELWhw_U160" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li></ul></section><section id="t7" class="opt"><h2><span class="tn">Topic 7</span><span>Quant – previous years based full paper</span><span class="cnt"></span></h2><ul class="v"><li data-id="SlnnAwm6GSc" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/SlnnAwm6GSc" target="_blank" rel="noopener">Previous Years Based Quant Full Paper Discussion (Scale 2 GBO)</a><span class="yt-real" title="Previous Years Based QUANT Full Paper DISCUSSION | IBPS RRB Scale 2 GBO 2024 | IBPS RRB Scale 3 — Bankers Grade">YouTube: Previous Years Based QUANT Full Paper DISCUSSION | IBPS RRB Scale 2 GBO 2024 | IBPS RRB Scale 3 — Bankers Grade</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/SlnnAwm6GSc" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li></ul></section><section id="t8" class="opt"><h2><span class="tn">Topic 8</span><span>Cut-off trend (last 5 years)</span><span class="cnt"></span></h2><ul class="v"><li data-id="gnWxhVgfxqc" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/gnWxhVgfxqc" target="_blank" rel="noopener">RRB SO IT Officer – Previous Year Cut Off, last 5 years trend</a><span class="yt-real" title="IBPS RRB SO IT Officer 2026 | Previous Year Cut Off | Last 5 Years Trend &amp; Safe Score | Khan Sir — Oliveboard">YouTube: IBPS RRB SO IT Officer 2026 | Previous Year Cut Off | Last 5 Years Trend &amp; Safe Score | Khan Sir — Oliveboard</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/gnWxhVgfxqc" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li><li data-id="kOSgJvAB-wc" data-lvl="optional"><div class="r"><span class="st"></span><span class="lec"></span><span class="t"><a href="https://youtu.be/kOSgJvAB-wc" target="_blank" rel="noopener">Scale II – 5 Years Exam Analysis (2021–2025)</a><span class="yt-real" title="IBPS RRB GBO Scale II | 5 Years Exam Analysis (2021–2025) + Previous Papers PDF — BankExamsToday">YouTube: IBPS RRB GBO Scale II | 5 Years Exam Analysis (2021–2025) + Previous Papers PDF — BankExamsToday</span></span><span class="badge">🟡 optional</span><a class="yt" href="https://youtu.be/kOSgJvAB-wc" target="_blank" rel="noopener">▶ YouTube</a><button class="qb" type="button" data-nomcq="1">✔ Dekh liya</button></div><div class="quiz"></div></li></ul></section><div class="meta">Progress isi browser mein save hota hai.</div></div><script>
+const KEY='ibps-rrb-it-quiz';
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
+function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+function loadFree(){try{return localStorage.getItem('ibps-rrb-it-free')==='1'}catch(e){return false}}
+function saveFree(v){try{localStorage.setItem('ibps-rrb-it-free',v?'1':'0')}catch(e){}}
+
+const MCQ={};
+const PASS=3;
+const items=[...document.querySelectorAll('li[data-id]')];
+function isPassed(st,id){return !!(st[id]&&st[id].passed)}
+function render(){
+  const st=load();const free=loadFree();
+  const fr=document.getElementById('free');if(fr)fr.checked=free;
+  let gate=true,d=0,md=0,m=0;
+  items.forEach(li=>{
+    const id=li.dataset.id,must=li.dataset.lvl==='must';
+    const unlocked=free||!must||gate;
+    const passed=isPassed(st,id);
+    if(must)gate=unlocked&&passed;
+    li.classList.toggle('locked',!unlocked);li.classList.toggle('done',passed);
+    if(!unlocked)li.classList.remove('open');
+    li.querySelector('.st').textContent=passed?'✅':(unlocked?'▶️':'🔒');
+    const qb=li.querySelector('.qb');
+    if(qb.dataset.nomcq){qb.textContent=passed?'✅ Dekh liya':'✔ Dekh liya';}
+    else{const b=st[id]&&st[id].best;qb.textContent=passed?('✅ MCQ '+b+'/5'):(b!=null?('📝 MCQ '+b+'/5'):'📝 MCQ');}
+    qb.classList.toggle('passed',passed);
+    if(passed)d++;if(must){m++;if(passed)md++;}
+  });
+  document.querySelectorAll('section').forEach(sec=>{const l=[...sec.querySelectorAll('li[data-id]')];const c=sec.querySelector('.cnt');if(c)c.textContent=l.length?(l.filter(x=>x.classList.contains('done')).length+' / '+l.length+' pass'):'';});
+  document.getElementById('pt').textContent=d+' / '+items.length;document.getElementById('pm').textContent=md+' / '+m;document.getElementById('pb').style.width=(m?md/m*100:0)+'%';
+}
+function shuffle(a){for(let i=a.length-1;i>0;i--){const j=Math.floor(Math.random()*(i+1));[a[i],a[j]]=[a[j],a[i]];}return a}
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+function buildQuiz(li){
+  const id=li.dataset.id,box=li.querySelector('.quiz'),set=MCQ[id];
+  box.classList.remove('checked');
+  let h='';
+  if(set.stem)h+='<div class="stem">'+esc(set.stem)+'</div>';
+  set.questions.forEach((q,qi)=>{
+    const ord=shuffle([0,1,2,3]);
+    h+='<div class="qq" data-q="'+qi+'"><div class="qt">Q'+(qi+1)+'. '+esc(q.q)+'</div>';
+    ord.forEach((oi,k)=>{h+='<label data-oi="'+oi+'"><input type="radio" name="'+id+'_'+qi+'" value="'+oi+'"><span>'+'ABCD'[k]+'. '+esc(q.options[oi])+'</span></label>';});
+    h+='<div class="ex">💡 '+esc(q.explain)+'</div></div>';
+  });
+  h+='<div class="qa"><button class="primary sub" type="button" disabled>Submit</button><span class="msg"></span></div>';
+  box.innerHTML=h;
+  const sub=box.querySelector('.sub');
+  box.addEventListener('change',()=>{const n=box.querySelectorAll('input[type=radio]:checked').length;sub.disabled=n<set.questions.length;});
+  sub.addEventListener('click',()=>{
+    let score=0;
+    set.questions.forEach((q,qi)=>{
+      const wrap=box.querySelector('.qq[data-q="'+qi+'"]');
+      const sel=wrap.querySelector('input:checked');const v=sel?+sel.value:-1;
+      if(v===q.answer)score++;
+      wrap.querySelectorAll('label').forEach(l=>{const oi=+l.dataset.oi;if(oi===q.answer)l.classList.add('right');else if(oi===v)l.classList.add('wrong');l.querySelector('input').disabled=true;});
+    });
+    box.classList.add('checked');
+    const st=load();const prev=st[id]||{};
+    st[id]={best:Math.max(prev.best||0,score),passed:!!prev.passed||score>=PASS};save(st);
+    const msg=box.querySelector('.msg');
+    if(score>=PASS){msg.className='msg ok';msg.textContent='Score '+score+'/5 — Pass! ✅'+(li.dataset.lvl==='must'?' Agla video unlock ho gaya.':'');}
+    else{msg.className='msg bad';msg.textContent='Score '+score+'/5 — Pass ke liye '+PASS+'/5 chahiye. Video dobara dekho aur Retry karo.';}
+    sub.remove();
+    const rt=document.createElement('button');rt.type='button';rt.textContent='Retry';rt.onclick=()=>buildQuiz(li);
+    box.querySelector('.qa').prepend(rt);
+    if(score>=PASS){const nx=items[items.indexOf(li)+1];if(nx){const b=document.createElement('button');b.type='button';b.textContent='Agla video →';b.onclick=()=>{li.classList.remove('open');nx.scrollIntoView({behavior:'smooth',block:'center'});};box.querySelector('.qa').append(b);}}
+    render();
+  });
+}
+items.forEach(li=>{
+  const qb=li.querySelector('.qb');
+  qb.addEventListener('click',()=>{
+    if(li.classList.contains('locked'))return;
+    if(qb.dataset.nomcq){const st=load();const id=li.dataset.id;if(st[id]&&st[id].passed)delete st[id];else st[id]={passed:true};save(st);render();return;}
+    const open=!li.classList.contains('open');
+    li.classList.toggle('open',open);
+    if(open&&!li.querySelector('.qq'))buildQuiz(li);
+  });
+});
+document.getElementById('free').addEventListener('change',e=>{saveFree(e.target.checked);render();});
+document.getElementById('clear').addEventListener('click',()=>{const cb=document.getElementById('clear');if(!cb.dataset.arm){cb.dataset.arm='1';cb.dataset.txt=cb.textContent;cb.textContent='Pakka reset? Dobara click karo';setTimeout(()=>{delete cb.dataset.arm;cb.textContent=cb.dataset.txt},4000);return;}delete cb.dataset.arm;cb.textContent=cb.dataset.txt;const st=load();items.forEach(li=>delete st[li.dataset.id]);save(st);items.forEach(li=>{li.classList.remove('open');li.querySelector('.quiz').innerHTML='';});render();});
+render();</script></body></html>
