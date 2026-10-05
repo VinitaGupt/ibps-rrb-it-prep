@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IT Officer Practice Paper 2</title><style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1b1f24;--muted:#5d6570;--line:#e2e5ea;--accent:#1d4e89;--accent-soft:#e8eff8;
+--must:#c0392b;--opt:#b7791f;--skip:#2f855a;--done:#8a929c;--bar:#2f855a;--ok:#2f855a;--ok-soft:#e6f4ec;--bad:#c0392b;--bad-soft:#fbeaea;--lock:#9aa1aa}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121417;--card:#1b1e23;--text:#e6e8eb;--muted:#9aa3ad;--line:#2c3037;
+--accent:#7fb0ee;--accent-soft:#1f2a38;--must:#f07167;--opt:#e0b04f;--skip:#5fc48a;--done:#6b737c;--bar:#5fc48a;--ok:#5fc48a;--ok-soft:#18301f;--bad:#f07167;--bad-soft:#3a1d1d;--lock:#5b626b}}
+:root[data-theme="dark"]{--bg:#121417;--card:#1b1e23;--text:#e6e8eb;--muted:#9aa3ad;--line:#2c3037;
+--accent:#7fb0ee;--accent-soft:#1f2a38;--must:#f07167;--opt:#e0b04f;--skip:#5fc48a;--done:#6b737c;--bar:#5fc48a;--ok:#5fc48a;--ok-soft:#18301f;--bad:#f07167;--bad-soft:#3a1d1d;--lock:#5b626b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 "Segoe UI","Nirmala UI",system-ui,-apple-system,Arial,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:20px 16px 48px}
+a{color:var(--accent)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.back{font-size:14px;text-decoration:none}
+h1{font-size:24px;margin:6px 0 4px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:12px}
+.pls a{display:inline-block;margin:2px 10px 2px 0}
+.progress{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:14px 0 18px;position:sticky;top:0;z-index:2}
+.progress .row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px;gap:8px;flex-wrap:wrap}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden}
+.bar>div{height:100%;background:var(--bar);width:0;transition:width .2s}
+.free{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:8px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:0 0 16px;overflow:hidden}
+section h2{font-size:16px;margin:0;padding:10px 14px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+section h2 .lvl{font-size:13px;font-weight:600}
+section.must h2 .lvl{color:var(--must)} section.opt h2 .lvl{color:var(--opt)}
+section h2 .cnt{margin-left:auto;font-size:13px;color:var(--muted);font-weight:400}
+ul.v{list-style:none;margin:0;padding:0}
+ul.v>li{border-top:1px solid var(--line)}
+ul.v>li:first-child{border-top:0}
+.r{display:flex;align-items:center;gap:10px;padding:8px 14px}
+.st{flex:none;width:22px;text-align:center;font-size:15px}
+.lec{flex:none;min-width:52px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.t{flex:1;min-width:0}
+.t a{text-decoration:none;color:var(--text)} .t a:hover{color:var(--accent);text-decoration:underline}
+.yt,.qb{flex:none;font:inherit;font-size:13px;text-decoration:none;padding:2px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--accent);cursor:pointer;white-space:nowrap}
+.qb.passed{color:var(--ok);border-color:var(--ok)}
+li.done .t a{color:var(--done)}
+li.locked .r{opacity:.55}
+li.locked .t a,li.locked .yt{pointer-events:none;color:var(--lock)}
+li.locked .qb{pointer-events:none;color:var(--lock)}
+.quiz{display:none;margin:0 14px 12px 46px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+li.open .quiz{display:block}
+.stem{white-space:pre-wrap;font-family:Consolas,"Cascadia Mono","Nirmala UI",monospace;font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px;margin:0 0 12px;overflow-x:auto}
+.qq{margin:0 0 14px}
+.qq .qt{font-weight:600;margin-bottom:6px;white-space:pre-wrap}
+.qq label{display:flex;gap:8px;align-items:flex-start;padding:5px 8px;border-radius:6px;cursor:pointer;border:1px solid transparent}
+.qq label:hover{background:var(--card)}
+.qq input{margin-top:4px;flex:none}
+.qq label.right{background:var(--ok-soft);border-color:var(--ok)}
+.qq label.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.qq .ex{display:none;font-size:13px;color:var(--muted);margin:6px 0 0 8px;white-space:pre-wrap}
+.quiz.checked .ex{display:block}
+.qa{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.qa .msg{font-size:14px;font-weight:600}
+.msg.ok{color:var(--ok)} .msg.bad{color:var(--bad)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 16px}
+.box h3{margin:0 0 6px;font-size:15px}
+.box.skip h3{color:var(--skip)}
+.box ul{margin:0;padding-left:20px}
+.btns{display:flex;gap:8px}
+button{font:inherit;font-size:13px;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:10px 0 22px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--accent)}
+.card .n{font-size:12px;color:var(--muted)} .card .h{font-weight:600;margin:2px 0 8px}
+.card .s{font-size:13px;color:var(--muted);margin-top:6px}
+h2.g{font-size:18px;margin:22px 0 4px}
+@media (max-width:560px){.lec{min-width:36px}.yt{display:none}.quiz{margin-left:14px}}
+@media print{.progress,.btns,.back,.qb,.quiz{display:none!important}body{background:#fff}section,.box{break-inside:avoid}li.locked .r{opacity:1}}
+</style></head>
+<body><div class="wrap"><div class="top"><a class="back" href="00_Index.html">← Sabhi subjects</a><a class="back" href="22_Previous_Year_Papers.html">Previous Year Papers →</a></div>
+<div class="part">IBPS RRB Officer Scale-II · IT Officer</div><h1>Practice Paper 2 – Professional Knowledge</h1>
+<div class="meta">40 sawal · 30 minute · +1 sahi, −0.25 galat. Pichhle saalon ke pattern par bana practice paper (asli IBPS paper nahi).</div>
+<style>
+.pp-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:8px}
+.pp-card{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--bg);display:flex;flex-direction:column;gap:6px}
+.pp-card b{font-size:15px}.pp-card .s{font-size:13px;color:var(--muted)}
+.pp{display:none;margin:0 0 16px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:0 14px 14px}
+.pp.on{display:block}
+.pp.checked .ex{display:block}
+.pp-bar{position:sticky;top:0;z-index:2;background:var(--card);display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:12px}
+.pp-time{font:600 18px/1 ui-monospace,Consolas,monospace;font-variant-numeric:tabular-nums}
+.pp-time.low{color:var(--bad)}
+.pp .tg{font-size:11px;color:var(--muted);font-weight:400;margin-left:6px}
+.pp-res{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0 0 12px;background:var(--bg)}
+.pp-res table{border-collapse:collapse;font-size:13px;margin-top:6px}.pp-res td,.pp-res th{padding:2px 10px 2px 0;text-align:left;font-variant-numeric:tabular-nums}
+.pp-wrap{overflow-x:auto}
+</style><div class="box" id="papers"><h3>🧪 IT Officer Practice Papers (Professional Knowledge)</h3>
+<div class="s">Har paper: 40 sawal · 30 minute · +1 sahi, −0.25 galat · khali chhoda = 0. Timer khatam hote hi paper apne aap submit ho jayega.</div>
+<div class="pp-list"><div class="pp-card" data-n="2"><b>Practice Paper 2</b><span class="s" id="ppb2">Abhi attempt nahi kiya</span><button class="primary" type="button" data-start="2">Paper 2 shuru karo</button></div></div></div>
+<div class="pp" id="pp"></div></div><script>
+const KEY='ibps-rrb-it-quiz';
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
+function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+function loadFree(){try{return localStorage.getItem('ibps-rrb-it-free')==='1'}catch(e){return false}}
+function saveFree(v){try{localStorage.setItem('ibps-rrb-it-free',v?'1':'0')}catch(e){}}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+const PAPERS={"2":[{"topic":"OS","q":"A system has 3 processes, each of which may need at most 4 instances of the same resource type. What is the minimum number of resource instances needed to guarantee that deadlock can never occur?","options":["9","12","10","11"],"answer":2,"explain":"Give each process 3 (one less than its maximum) = 9; one extra instance lets at least one process finish, so 3x3 + 1 = 10."},{"topic":"OS","q":"A counting semaphore S is initialised to 10. Then 6 P (wait) and 4 V (signal) operations are performed on it. What is the final value of S?","options":["8","0","12","4"],"answer":0,"explain":"Each P decrements and each V increments: 10 - 6 + 4 = 8."},{"topic":"OS","q":"Consider the page reference string 2, 3, 2, 1, 5, 2, 4, 5, 3, 2, 5, 2 with 3 page frames, all initially empty. How many page faults occur with the LRU page replacement algorithm?","options":["6","9","8","7"],"answer":3,"explain":"LRU faults on 2,3,1,5,4,3,2 = 7 faults (Optimal gives 6 and FIFO gives 9 for the same string)."},{"topic":"OS","q":"A situation in which a process spends more time swapping pages in and out than executing, causing CPU utilisation to fall sharply, is called:","options":["Starvation","Thrashing","Belady's anomaly","Spooling"],"answer":1,"explain":"Thrashing happens when there are too few frames for the working set, so the system keeps page-faulting."},{"topic":"DBMS","q":"Which statement about the basic Two-Phase Locking (2PL) protocol is correct?","options":["It guarantees conflict serializability but not freedom from deadlock","It guarantees freedom from deadlock but not serializability","It guarantees both serializability and freedom from cascading rollback","It allows a transaction to acquire new locks after releasing a lock"],"answer":0,"explain":"Basic 2PL (growing then shrinking phase) ensures conflict serializability, but deadlocks and cascading rollbacks are still possible."},{"topic":"DBMS","q":"Consider the schedule S: R1(A), W2(A), R2(B), W1(B), where Ri/Wi are read/write by transaction Ti. The schedule S is:","options":["Conflict serializable, equivalent to T1 then T2","Conflict serializable, equivalent to T2 then T1","A serial schedule","Not conflict serializable"],"answer":3,"explain":"R1(A)-W2(A) gives edge T1->T2 and R2(B)-W1(B) gives T2->T1; the precedence graph has a cycle."},{"topic":"DBMS","q":"In a B+ tree index, which of the following is true?","options":["Data (record) pointers are stored in both internal and leaf nodes","Leaf nodes are linked together, enabling efficient range queries","Leaf nodes can appear at different levels","Internal nodes store complete records"],"answer":1,"explain":"In a B+ tree all record pointers are in leaf nodes, which are all at the same level and linked for sequential/range access."},{"topic":"DBMS","q":"Table Emp(id, name, dept, sal) has rows: (1,Asha,IT,50000), (2,Ravi,IT,70000), (3,Neha,HR,40000), (4,Karan,HR,45000), (5,Meena,OPS,60000), (6,Vikas,IT,NULL). A view is created: CREATE VIEW v AS SELECT dept, AVG(sal) AS a FROM Emp GROUP BY dept; What is the output of: SELECT dept FROM v WHERE a > (SELECT AVG(sal) FROM Emp);","options":["OPS only","IT only","IT and OPS","HR, IT and OPS"],"answer":2,"explain":"AVG ignores NULL: overall average = 265000/5 = 53000; IT = 60000, OPS = 60000, HR = 42500, so IT and OPS are returned."},{"topic":"DBMS","q":"A stored block of SQL that is executed automatically by the DBMS when an INSERT, UPDATE or DELETE event occurs on a table is called a:","options":["Trigger","Stored procedure","View","Cursor"],"answer":0,"explain":"A trigger fires automatically on a specified DML event; a stored procedure must be called explicitly."},{"topic":"DBMS","q":"Relation R has 5 tuples and 3 attributes, and relation S has 4 tuples and 2 attributes (no common attribute names). How many tuples and attributes are in R x S (Cartesian product)?","options":["20 tuples, 5 attributes","9 tuples, 5 attributes","20 tuples, 6 attributes","9 tuples, 6 attributes"],"answer":0,"explain":"Cartesian product pairs every tuple: 5 x 4 = 20 tuples, and attributes add up: 3 + 2 = 5."},{"topic":"Networking","q":"In the TCP three-way handshake, a client sends a SYN segment with sequence number 1000. What acknowledgement number will the server put in its SYN+ACK segment?","options":["1000","1001","0","2000"],"answer":1,"explain":"A SYN consumes one sequence number, so the server acknowledges ISN + 1 = 1001."},{"topic":"Networking","q":"Which medium access method is used by IEEE 802.11 wireless LANs because collisions cannot be reliably detected while transmitting?","options":["CSMA/CD","Pure ALOHA","CSMA/CA","Token passing"],"answer":2,"explain":"Wi-Fi uses CSMA/CA (collision avoidance with backoff and ACKs); wired Ethernet uses CSMA/CD."},{"topic":"Networking","q":"Data bits 100100 are to be sent using CRC with generator polynomial x^3 + x^2 + 1 (divisor 1101). What is the transmitted frame?","options":["100100000","100100111","100100010","100100001"],"answer":3,"explain":"Append 3 zeros and divide 100100000 by 1101 using XOR (mod-2); remainder is 001, so frame = 100100001."},{"topic":"Networking","q":"How many redundant (parity) bits are required to send 7 data bits using Hamming code for single-bit error correction?","options":["4","3","5","7"],"answer":0,"explain":"Need smallest r with 2^r >= m + r + 1; for m = 7, r = 4 since 16 >= 12."},{"topic":"Networking","q":"Which IEEE standard is associated with Wireless Personal Area Networks such as Bluetooth?","options":["IEEE 802.3","IEEE 802.15","IEEE 802.11","IEEE 802.16"],"answer":1,"explain":"802.15 is WPAN (Bluetooth), 802.3 is Ethernet, 802.11 is Wi-Fi and 802.16 is WiMAX."},{"topic":"Networking","q":"What is the correct order of messages when a client obtains an IP address from a DHCP server?","options":["Request, Offer, Discover, Acknowledge","Discover, Request, Offer, Acknowledge","Offer, Discover, Acknowledge, Request","Discover, Offer, Request, Acknowledge"],"answer":3,"explain":"DHCP follows DORA: Discover, Offer, Request, Acknowledge."},{"topic":"Data Structures","q":"The preorder traversal of a binary tree is A B D E C F and its inorder traversal is D B E A F C. What is its postorder traversal?","options":["D E B F C A","D B E F C A","E D B F C A","D E F B C A"],"answer":0,"explain":"Root A; left subtree (D B E) has root B with children D, E; right subtree has root C with left child F. Postorder = D E B F C A."},{"topic":"Data Structures","q":"Keys 50, 700, 76, 85, 92, 73, 101 are inserted in this order into a hash table of size 7 using h(k) = k mod 7 and linear probing. In which slot (0-6) is 101 stored?","options":["3","4","5","6"],"answer":2,"explain":"Slots: 700->0, 50->1, 85->2, 92->3, 73->4, 76->6; 101 mod 7 = 3, probes 3 and 4 (full) and lands in 5."},{"topic":"Data Structures","q":"The array [10, 20, 15, 30, 40] represents a min-heap. After inserting 5 and restoring the heap property, the array becomes:","options":["[5, 10, 15, 30, 40, 20]","[5, 20, 10, 30, 40, 15]","[5, 10, 20, 30, 40, 15]","[10, 20, 5, 30, 40, 15]"],"answer":1,"explain":"5 goes to index 5 (child of 15), swaps with 15, then with the root 10: [5, 20, 10, 30, 40, 15]."},{"topic":"Data Structures","q":"What is the minimum number of nodes in an AVL tree of height 4, where a tree with only a root node has height 1?","options":["15","8","4","7"],"answer":3,"explain":"N(h) = N(h-1) + N(h-2) + 1 with N(1)=1, N(2)=2: N(3)=4, N(4)=7."},{"topic":"OOPS","q":"Function overloading is an example of:","options":["Run-time polymorphism","Compile-time (static) polymorphism","Dynamic binding","Inheritance"],"answer":1,"explain":"The compiler selects the overloaded function from the argument list at compile time; overriding with virtual functions is run-time polymorphism."},{"topic":"OOPS","q":"In Java, which of the following is true for an abstract class but NOT for an interface?","options":["It can have constructors and non-final instance variables","It can have abstract methods","It cannot be instantiated directly","It can be used as a reference type"],"answer":0,"explain":"Interfaces cannot have constructors or instance fields (only public static final constants); abstract classes can have both."},{"topic":"OOPS","q":"In C++, a class that contains the declaration virtual void show() = 0; is called:","options":["A friend class","A virtual base class","An abstract class","A final class"],"answer":2,"explain":"A pure virtual function (= 0) makes the class abstract, so objects of it cannot be created."},{"topic":"Compiler","q":"Which of the following parsers cannot directly handle a left-recursive grammar?","options":["LALR(1) parser","SLR(1) parser","Canonical LR(1) parser","LL(1) (predictive) parser"],"answer":3,"explain":"Top-down LL(1)/recursive-descent parsers go into infinite recursion on left recursion; bottom-up LR parsers handle it."},{"topic":"Compiler","q":"Which system program combines separately compiled object modules and resolves external symbol references between them to produce an executable file?","options":["Loader","Assembler","Linker","Interpreter"],"answer":2,"explain":"The linker links object files and libraries; the loader then places the executable in memory for execution."},{"topic":"C Programming","q":"What is the output of the following C code?\nint a[] = {10, 20, 30, 40, 50};\nint *p = &a[1];\nprintf(\"%d %d\", *(p + 2), p[-1]);","options":["40 10","30 10","40 20","50 20"],"answer":0,"explain":"p points to a[1]; *(p+2) is a[3] = 40 and p[-1] is a[0] = 10."},{"topic":"C Programming","q":"What is the output of the following C code?\nchar s[] = \"IBPS\";\nprintf(\"%d %d\", (int)sizeof(s), (int)strlen(s));","options":["4 4","4 5","5 5","5 4"],"answer":3,"explain":"sizeof counts the terminating '\\0' (5 bytes), while strlen counts only the characters (4)."},{"topic":"C Programming","q":"Assume int = 4 bytes and float = 4 bytes. What are the sizes of the following?\nstruct S { int a; char b[8]; float c; };\nunion U { int a; char b[8]; float c; };","options":["sizeof(S) = 16, sizeof(U) = 16","sizeof(S) = 16, sizeof(U) = 8","sizeof(S) = 8, sizeof(U) = 16","sizeof(S) = 12, sizeof(U) = 4"],"answer":1,"explain":"A structure stores all members (4 + 8 + 4 = 16); a union shares memory, so its size is the largest member (8)."},{"topic":"Software Engineering","q":"Which combination is considered the best for good software module design?","options":["Low cohesion and high coupling","High cohesion and high coupling","Low cohesion and low coupling","High cohesion and low coupling"],"answer":3,"explain":"Modules should be focused on one task (high cohesion) and depend little on other modules (low coupling)."},{"topic":"Software Engineering","q":"In the Scrum framework, who is responsible for maintaining and prioritising the Product Backlog?","options":["Scrum Master","Product Owner","Development Team","Project Sponsor"],"answer":1,"explain":"The Product Owner owns and orders the Product Backlog; the Scrum Master facilitates the process."},{"topic":"Software Engineering","q":"A project has Unadjusted Function Points (UFP) = 200 and the sum of the 14 complexity adjustment factors (Fi) = 45. Using FP = UFP x [0.65 + 0.01 x sum(Fi)], the function point count is:","options":["200","245","220","130"],"answer":2,"explain":"VAF = 0.65 + 0.45 = 1.10, so FP = 200 x 1.10 = 220."},{"topic":"Web Technology","q":"A div has CSS: width: 200px; padding: 10px; border: 5px solid; margin: 20px; box-sizing: content-box. What is the rendered width of its border box (excluding margin)?","options":["230px","200px","270px","215px"],"answer":0,"explain":"With content-box, width is content only: 200 + 2x10 padding + 2x5 border = 230px (margin adds outside this)."},{"topic":"Web Technology","q":"What is the output of the JavaScript statement console.log(\"5\" + 3 - 2); ?","options":["6","\"532\"","NaN","51"],"answer":3,"explain":"\"5\" + 3 concatenates to \"53\"; the minus operator converts it to a number, so 53 - 2 = 51."},{"topic":"Computer Architecture","q":"In the DMA mode where the DMA controller takes the system bus for one word transfer at a time and then returns control to the CPU, the mode is called:","options":["Burst mode","Block transfer mode","Cycle stealing mode","Polling mode"],"answer":2,"explain":"Cycle stealing transfers one word per bus grant, interleaving with CPU cycles; burst mode transfers a whole block at once."},{"topic":"Computer Architecture","q":"Which interrupt of the Intel 8085 microprocessor is non-maskable and has the highest priority?","options":["RST 7.5","INTR","TRAP","RST 5.5"],"answer":2,"explain":"TRAP (RST 4.5) cannot be disabled by software and has the highest priority in 8085."},{"topic":"Cloud","q":"Which of the following is a Type-2 (hosted) hypervisor that runs on top of a host operating system?","options":["VMware ESXi","Oracle VirtualBox","Citrix XenServer","Microsoft Hyper-V"],"answer":1,"explain":"VirtualBox runs as an application on a host OS; ESXi, Hyper-V and XenServer are Type-1 (bare-metal) hypervisors."},{"topic":"Data Warehouse & Mining","q":"Five transactions are: T1 {Bread, Milk}, T2 {Bread, Butter, Milk}, T3 {Bread, Butter}, T4 {Milk, Butter}, T5 {Bread, Milk, Eggs}. For the rule Bread -> Milk, what are the support and confidence?","options":["Support 75%, Confidence 60%","Support 60%, Confidence 75%","Support 60%, Confidence 100%","Support 80%, Confidence 75%"],"answer":1,"explain":"{Bread, Milk} occurs in 3 of 5 transactions (60%); Bread occurs in 4, so confidence = 3/4 = 75%."},{"topic":"Security","q":"When A sends a digitally signed message to B, which key does A use to create the signature and which key does B use to verify it?","options":["A's public key to sign, A's private key to verify","B's public key to sign, B's private key to verify","A's private key to sign, A's public key to verify","A's private key to sign, B's public key to verify"],"answer":2,"explain":"The sender signs with its own private key; anyone can verify using the sender's public key."},{"topic":"Security","q":"A firewall that keeps track of the state of active connections and allows packets only if they belong to a valid established session is called a:","options":["Stateful inspection firewall","Static packet-filtering firewall","Circuit-level proxy only","Application-level gateway"],"answer":0,"explain":"A stateful firewall maintains a connection state table and checks each packet against it, unlike static packet filters."},{"topic":"Java/Mobile/AI/CBS","q":"Java is called platform independent mainly because the Java compiler (javac) converts source code into:","options":["Native machine code for the host CPU","Assembly language","C source code","Bytecode that is executed by the JVM"],"answer":3,"explain":"javac produces .class bytecode, which any platform's JVM can run: write once, run anywhere."}]};
+const PKEY='ibps-rrb-it-papers';
+function pLoad(){try{return JSON.parse(localStorage.getItem(PKEY)||'{}')}catch(e){return {}}}
+function pSave(o){try{localStorage.setItem(PKEY,JSON.stringify(o))}catch(e){}}
+function pCards(){const b=pLoad();Object.keys(PAPERS).forEach(n=>{const r=b[n],el=document.getElementById('ppb'+n);if(el)el.textContent=r?('Best: '+r.best+' / 40 marks · '+r.tries+' attempt'):'Abhi attempt nahi kiya';});}
+let ppTimer=null;
+function startPaper(n){
+  const P=PAPERS[n],box=document.getElementById('pp');clearInterval(ppTimer);
+  let h='<div class="pp-bar"><b>Practice Paper '+n+'</b><span>Attempted: <b id="ppa">0</b> / '+P.length+'</span><span class="pp-time" id="ppt">30:00</span><button class="primary" type="button" id="pps">Submit</button><button type="button" id="ppx">Band karo</button></div><div id="ppr"></div><div class="pp-q">';
+  P.forEach((q,qi)=>{h+='<div class="qq" data-q="'+qi+'"><div class="qt">Q'+(qi+1)+'. '+esc(q.q)+'<span class="tg">'+esc(q.topic)+'</span></div>';
+    q.options.forEach((o,oi)=>{h+='<label data-oi="'+oi+'"><input type="radio" name="pp'+n+'_'+qi+'" value="'+oi+'"><span>'+'ABCD'[oi]+'. '+esc(o)+'</span></label>';});
+    h+='<div class="ex">💡 '+esc(q.explain)+'</div></div>';});
+  h+='</div><div class="qa"><button class="primary" type="button" id="pps2">Submit</button></div>';
+  box.innerHTML=h;box.classList.add('on');box.classList.remove('checked');box.scrollIntoView({behavior:'smooth'});
+  const end=Date.now()+30*60*1000,tEl=document.getElementById('ppt');let done=false;
+  const tick=()=>{const s=Math.max(0,Math.round((end-Date.now())/1000));tEl.textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');tEl.classList.toggle('low',s<=300);if(s===0)submit(true);};
+  tick();ppTimer=setInterval(tick,1000);
+  box.addEventListener('change',()=>{document.getElementById('ppa').textContent=box.querySelectorAll('.pp-q input:checked').length;});
+  function submit(auto){
+    if(done)return;done=true;clearInterval(ppTimer);
+    let c=0,w=0,u=0;const tp={};
+    P.forEach((q,qi)=>{const wrap=box.querySelector('.qq[data-q="'+qi+'"]');const sel=wrap.querySelector('input:checked');const v=sel?+sel.value:-1;
+      const t=tp[q.topic]||(tp[q.topic]={c:0,n:0});t.n++;
+      if(v<0)u++;else if(v===q.answer){c++;t.c++;}else w++;
+      wrap.querySelectorAll('label').forEach(l=>{const oi=+l.dataset.oi;if(oi===q.answer)l.classList.add('right');else if(oi===v)l.classList.add('wrong');l.querySelector('input').disabled=true;});});
+    const marks=c-w*0.25;box.classList.add('checked');
+    const b=pLoad();const r=b[n]||{best:-99,tries:0};b[n]={best:Math.max(r.best,marks),tries:r.tries+1};pSave(b);pCards();
+    let rows='';Object.keys(tp).forEach(k=>{rows+='<tr><td>'+esc(k)+'</td><td>'+tp[k].c+' / '+tp[k].n+'</td></tr>';});
+    document.getElementById('ppr').innerHTML='<div class="pp-res"><b>'+(auto?'⏰ Time khatam. ':'')+'Marks: '+marks+' / 40</b> · ✅ Sahi '+c+' · ❌ Galat '+w+' · ⬜ Chhoda '+u+'<div class="s">Neeche har sawal ka sahi jawab (hara) aur explanation hai.</div><div class="pp-wrap"><table><tr><th>Topic</th><th>Sahi</th></tr>'+rows+'</table></div></div>';
+    ['pps','pps2'].forEach(id=>{const x=document.getElementById(id);if(x)x.remove();});
+    const again=document.createElement('button');again.type='button';again.textContent='Dobara attempt karo';again.onclick=()=>startPaper(n);box.querySelector('.qa').append(again);
+    document.getElementById('ppr').scrollIntoView({behavior:'smooth'});
+  }
+  document.getElementById('pps').onclick=()=>submit(false);document.getElementById('pps2').onclick=()=>submit(false);
+  document.getElementById('ppx').onclick=()=>{clearInterval(ppTimer);box.classList.remove('on');box.innerHTML='';document.getElementById('papers').scrollIntoView();};
+}
+document.querySelectorAll('[data-start]').forEach(b=>b.addEventListener('click',()=>startPaper(b.dataset.start)));
+pCards();</script></body></html>

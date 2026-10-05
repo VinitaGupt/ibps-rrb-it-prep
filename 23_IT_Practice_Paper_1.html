@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IT Officer Practice Paper 1</title><style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1b1f24;--muted:#5d6570;--line:#e2e5ea;--accent:#1d4e89;--accent-soft:#e8eff8;
+--must:#c0392b;--opt:#b7791f;--skip:#2f855a;--done:#8a929c;--bar:#2f855a;--ok:#2f855a;--ok-soft:#e6f4ec;--bad:#c0392b;--bad-soft:#fbeaea;--lock:#9aa1aa}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121417;--card:#1b1e23;--text:#e6e8eb;--muted:#9aa3ad;--line:#2c3037;
+--accent:#7fb0ee;--accent-soft:#1f2a38;--must:#f07167;--opt:#e0b04f;--skip:#5fc48a;--done:#6b737c;--bar:#5fc48a;--ok:#5fc48a;--ok-soft:#18301f;--bad:#f07167;--bad-soft:#3a1d1d;--lock:#5b626b}}
+:root[data-theme="dark"]{--bg:#121417;--card:#1b1e23;--text:#e6e8eb;--muted:#9aa3ad;--line:#2c3037;
+--accent:#7fb0ee;--accent-soft:#1f2a38;--must:#f07167;--opt:#e0b04f;--skip:#5fc48a;--done:#6b737c;--bar:#5fc48a;--ok:#5fc48a;--ok-soft:#18301f;--bad:#f07167;--bad-soft:#3a1d1d;--lock:#5b626b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 "Segoe UI","Nirmala UI",system-ui,-apple-system,Arial,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:20px 16px 48px}
+a{color:var(--accent)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.back{font-size:14px;text-decoration:none}
+h1{font-size:24px;margin:6px 0 4px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:12px}
+.pls a{display:inline-block;margin:2px 10px 2px 0}
+.progress{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:14px 0 18px;position:sticky;top:0;z-index:2}
+.progress .row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px;gap:8px;flex-wrap:wrap}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden}
+.bar>div{height:100%;background:var(--bar);width:0;transition:width .2s}
+.free{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:8px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:0 0 16px;overflow:hidden}
+section h2{font-size:16px;margin:0;padding:10px 14px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+section h2 .lvl{font-size:13px;font-weight:600}
+section.must h2 .lvl{color:var(--must)} section.opt h2 .lvl{color:var(--opt)}
+section h2 .cnt{margin-left:auto;font-size:13px;color:var(--muted);font-weight:400}
+ul.v{list-style:none;margin:0;padding:0}
+ul.v>li{border-top:1px solid var(--line)}
+ul.v>li:first-child{border-top:0}
+.r{display:flex;align-items:center;gap:10px;padding:8px 14px}
+.st{flex:none;width:22px;text-align:center;font-size:15px}
+.lec{flex:none;min-width:52px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.t{flex:1;min-width:0}
+.t a{text-decoration:none;color:var(--text)} .t a:hover{color:var(--accent);text-decoration:underline}
+.yt,.qb{flex:none;font:inherit;font-size:13px;text-decoration:none;padding:2px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--accent);cursor:pointer;white-space:nowrap}
+.qb.passed{color:var(--ok);border-color:var(--ok)}
+li.done .t a{color:var(--done)}
+li.locked .r{opacity:.55}
+li.locked .t a,li.locked .yt{pointer-events:none;color:var(--lock)}
+li.locked .qb{pointer-events:none;color:var(--lock)}
+.quiz{display:none;margin:0 14px 12px 46px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+li.open .quiz{display:block}
+.stem{white-space:pre-wrap;font-family:Consolas,"Cascadia Mono","Nirmala UI",monospace;font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px;margin:0 0 12px;overflow-x:auto}
+.qq{margin:0 0 14px}
+.qq .qt{font-weight:600;margin-bottom:6px;white-space:pre-wrap}
+.qq label{display:flex;gap:8px;align-items:flex-start;padding:5px 8px;border-radius:6px;cursor:pointer;border:1px solid transparent}
+.qq label:hover{background:var(--card)}
+.qq input{margin-top:4px;flex:none}
+.qq label.right{background:var(--ok-soft);border-color:var(--ok)}
+.qq label.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.qq .ex{display:none;font-size:13px;color:var(--muted);margin:6px 0 0 8px;white-space:pre-wrap}
+.quiz.checked .ex{display:block}
+.qa{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.qa .msg{font-size:14px;font-weight:600}
+.msg.ok{color:var(--ok)} .msg.bad{color:var(--bad)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 16px}
+.box h3{margin:0 0 6px;font-size:15px}
+.box.skip h3{color:var(--skip)}
+.box ul{margin:0;padding-left:20px}
+.btns{display:flex;gap:8px}
+button{font:inherit;font-size:13px;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:10px 0 22px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--accent)}
+.card .n{font-size:12px;color:var(--muted)} .card .h{font-weight:600;margin:2px 0 8px}
+.card .s{font-size:13px;color:var(--muted);margin-top:6px}
+h2.g{font-size:18px;margin:22px 0 4px}
+@media (max-width:560px){.lec{min-width:36px}.yt{display:none}.quiz{margin-left:14px}}
+@media print{.progress,.btns,.back,.qb,.quiz{display:none!important}body{background:#fff}section,.box{break-inside:avoid}li.locked .r{opacity:1}}
+</style></head>
+<body><div class="wrap"><div class="top"><a class="back" href="00_Index.html">← Sabhi subjects</a><a class="back" href="22_Previous_Year_Papers.html">Previous Year Papers →</a></div>
+<div class="part">IBPS RRB Officer Scale-II · IT Officer</div><h1>Practice Paper 1 – Professional Knowledge</h1>
+<div class="meta">40 sawal · 30 minute · +1 sahi, −0.25 galat. Pichhle saalon ke pattern par bana practice paper (asli IBPS paper nahi).</div>
+<style>
+.pp-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:8px}
+.pp-card{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--bg);display:flex;flex-direction:column;gap:6px}
+.pp-card b{font-size:15px}.pp-card .s{font-size:13px;color:var(--muted)}
+.pp{display:none;margin:0 0 16px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:0 14px 14px}
+.pp.on{display:block}
+.pp.checked .ex{display:block}
+.pp-bar{position:sticky;top:0;z-index:2;background:var(--card);display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:12px}
+.pp-time{font:600 18px/1 ui-monospace,Consolas,monospace;font-variant-numeric:tabular-nums}
+.pp-time.low{color:var(--bad)}
+.pp .tg{font-size:11px;color:var(--muted);font-weight:400;margin-left:6px}
+.pp-res{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0 0 12px;background:var(--bg)}
+.pp-res table{border-collapse:collapse;font-size:13px;margin-top:6px}.pp-res td,.pp-res th{padding:2px 10px 2px 0;text-align:left;font-variant-numeric:tabular-nums}
+.pp-wrap{overflow-x:auto}
+</style><div class="box" id="papers"><h3>🧪 IT Officer Practice Papers (Professional Knowledge)</h3>
+<div class="s">Har paper: 40 sawal · 30 minute · +1 sahi, −0.25 galat · khali chhoda = 0. Timer khatam hote hi paper apne aap submit ho jayega.</div>
+<div class="pp-list"><div class="pp-card" data-n="1"><b>Practice Paper 1</b><span class="s" id="ppb1">Abhi attempt nahi kiya</span><button class="primary" type="button" data-start="1">Paper 1 shuru karo</button></div></div></div>
+<div class="pp" id="pp"></div></div><script>
+const KEY='ibps-rrb-it-quiz';
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
+function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+function loadFree(){try{return localStorage.getItem('ibps-rrb-it-free')==='1'}catch(e){return false}}
+function saveFree(v){try{localStorage.setItem('ibps-rrb-it-free',v?'1':'0')}catch(e){}}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+const PAPERS={"1":[{"topic":"OS","q":"In a five-state process model, which of the following state transitions is NOT possible directly?","options":["Running → Ready","Waiting (Blocked) → Running","Waiting (Blocked) → Ready","Ready → Running"],"answer":1,"explain":"A blocked process must first move to Ready when its I/O/event completes; only the scheduler moves a Ready process to Running."},{"topic":"OS","q":"Four processes P1, P2, P3, P4 arrive at time 0 with CPU burst times 6, 8, 7 and 3 ms respectively. What is the average waiting time under non-preemptive SJF scheduling?","options":["10.25 ms","7.75 ms","6 ms","7 ms"],"answer":3,"explain":"SJF order is P4, P1, P3, P2 with waiting times 0, 3, 9, 16. Average = 28/4 = 7 ms."},{"topic":"OS","q":"Processes P1, P2, P3 arrive at time 0 (in that order) with burst times 5, 3 and 1 ms. Using Round Robin with time quantum 2 ms, what is the average turnaround time?","options":["7.33 ms","4.33 ms","6.33 ms","8.67 ms"],"answer":0,"explain":"Gantt: P1(0-2) P2(2-4) P3(4-5) P1(5-7) P2(7-8) P1(8-9). Completion times 9, 8, 5, so average TAT = 22/3 = 7.33 ms."},{"topic":"OS","q":"A C program executes the fork() system call three times in sequence (no conditions). How many processes exist in total, including the original parent?","options":["3","4","8","6"],"answer":2,"explain":"Each fork() doubles the number of processes, so after 3 calls there are 2^3 = 8 processes."},{"topic":"DBMS","q":"A super key that has no proper subset which is also a super key is called a:","options":["Foreign key","Composite key","Candidate key","Alternate key"],"answer":2,"explain":"A candidate key is a minimal super key; one candidate key is chosen as the primary key."},{"topic":"DBMS","q":"Relation R(A, B, C, D) has the functional dependencies AB → C and C → D, with AB as the only candidate key. What is the highest normal form R satisfies?","options":["2NF","1NF","3NF","BCNF"],"answer":0,"explain":"There is no partial dependency on the key, so it is in 2NF. But C → D is a transitive dependency (C is not a super key), so it is not in 3NF."},{"topic":"DBMS","q":"Table Emp(id, dept, salary) has rows: (1,IT,50000), (2,HR,30000), (3,IT,60000), (4,Sales,40000), (5,HR,35000), (6,IT,45000), (7,Sales,42000). What is the output of: SELECT dept, COUNT(*) FROM Emp GROUP BY dept HAVING AVG(salary) > 40000;","options":["IT 3 only","IT 3, HR 2 and Sales 2","IT 2 and Sales 1","IT 3 and Sales 2"],"answer":3,"explain":"Average salaries: IT 51666.67, HR 32500, Sales 41000. Only IT (3 rows) and Sales (2 rows) pass the HAVING condition."},{"topic":"DBMS","q":"Table A has one column x with values 1, 2, 3, 3 and table B has one column x with values 2, 3, 3, 4. How many rows does SELECT * FROM A LEFT JOIN B ON A.x = B.x; return?","options":["4","6","5","8"],"answer":1,"explain":"1 gives one row with NULL, 2 matches once, and each of the two 3s matches two 3s (4 rows). Total = 1 + 1 + 4 = 6."},{"topic":"DBMS","q":"Which ACID property guarantees that the changes made by a committed transaction are not lost even if the system crashes immediately afterwards?","options":["Atomicity","Consistency","Isolation","Durability"],"answer":3,"explain":"Durability means committed changes are permanent; it is usually ensured using logs and the recovery manager."},{"topic":"DBMS","q":"In an ER diagram, a weak entity set is represented by a:","options":["Double ellipse","Double rectangle","Dashed ellipse","Diamond"],"answer":1,"explain":"A weak entity set is drawn as a double rectangle and its identifying relationship as a double diamond."},{"topic":"Networking","q":"Which layer of the OSI model is responsible for logical addressing and routing of packets between networks?","options":["Network layer","Data link layer","Transport layer","Session layer"],"answer":0,"explain":"The Network layer (Layer 3) handles IP addressing and routing; routers work at this layer."},{"topic":"Networking","q":"Which of the following application protocols uses UDP as its transport protocol?","options":["HTTP","SMTP","TFTP","FTP"],"answer":2,"explain":"TFTP (Trivial FTP) runs over UDP port 69, while HTTP, SMTP and FTP use TCP."},{"topic":"Networking","q":"What is the broadcast address of the subnet to which the host 172.16.45.130/27 belongs?","options":["172.16.45.127","172.16.45.159","172.16.45.143","172.16.45.191"],"answer":1,"explain":"A /27 gives a block size of 32. The host 130 is in the subnet 128–159, so the broadcast address is 172.16.45.159."},{"topic":"Networking","q":"The IP address 190.25.4.1 belongs to which class?","options":["Class A","Class C","Class D","Class B"],"answer":3,"explain":"The first octet 190 is in the range 128–191, which is Class B."},{"topic":"Networking","q":"Which is the default port number used by SSH (Secure Shell)?","options":["22","21","23","25"],"answer":0,"explain":"SSH uses TCP port 22. Port 21 is FTP, 23 is Telnet and 25 is SMTP."},{"topic":"Networking","q":"Which network device operates at the Data Link layer and forwards frames using MAC addresses?","options":["Hub","Router","Switch","Repeater"],"answer":2,"explain":"A switch uses a MAC address table to forward frames (Layer 2). A hub and a repeater work at Layer 1; a router works at Layer 3."},{"topic":"Data Structures","q":"What is the postfix form of the infix expression A + B * C - D / E?","options":["A B + C * D E / -","A B C * D E / - +","A B C + * D E / -","A B C * + D E / -"],"answer":3,"explain":"* and / are done first: A + (B*C) gives ABC*+, then subtracting (D/E) gives ABC*+DE/-."},{"topic":"Data Structures","q":"What is the value of the postfix expression 6 2 3 + - 3 8 2 / + * ?","options":["7","1","49","-7"],"answer":0,"explain":"2 3 + = 5; 6 5 - = 1; 8 2 / = 4; 3 4 + = 7; 1 7 * = 7."},{"topic":"Data Structures","q":"In a circular queue implemented with an array of size n (one slot kept empty), which condition indicates that the queue is FULL?","options":["rear == front","(rear + 1) % n == front","rear == n - 1","(front + 1) % n == rear"],"answer":1,"explain":"When the next position after rear is front, there is no free slot. rear == front means the queue is empty."},{"topic":"Data Structures","q":"What is the worst-case time complexity of inserting an element at the beginning of an array of n elements, compared with a singly linked list?","options":["Array O(1), linked list O(n)","Both O(n)","Array O(n), linked list O(1)","Both O(1)"],"answer":2,"explain":"An array must shift all n elements to the right. A linked list only needs a new node pointing to the old head."},{"topic":"OOPS","q":"Which OOP concept means wrapping data and the methods that act on it into a single unit and hiding the internal details from outside?","options":["Polymorphism","Inheritance","Abstraction","Encapsulation"],"answer":3,"explain":"Encapsulation binds data and methods together in a class and restricts direct access, for example by using private members."},{"topic":"OOPS","q":"Class B inherits from class A, and class C inherits from class B (multilevel inheritance). When an object of class C is created, in what order are the constructors executed?","options":["A, then B, then C","C, then B, then A","C only","B, then A, then C"],"answer":0,"explain":"Base class constructors run first, from the top of the hierarchy downwards. Destructors run in the reverse order."},{"topic":"OOPS","q":"Which type of inheritance is NOT supported through classes in Java, because of the ambiguity known as the diamond problem?","options":["Multilevel inheritance","Hierarchical inheritance","Multiple inheritance","Single inheritance"],"answer":2,"explain":"A Java class cannot extend more than one class. Multiple inheritance is achieved using interfaces instead."},{"topic":"Compiler","q":"How many tokens are there in the C statement: printf(\"i = %d, &i = %x\", i, &i);","options":["8","10","12","13"],"answer":1,"explain":"Tokens: printf, (, \"i = %d, &i = %x\", \",\", i, \",\", &, i, ), ; = 10. The whole string literal is one token."},{"topic":"Compiler","q":"Which phase of a compiler detects errors such as a type mismatch or using an undeclared variable?","options":["Lexical analysis","Syntax analysis","Code optimization","Semantic analysis"],"answer":3,"explain":"Semantic analysis checks meaning, such as type checking and declarations, using the parse tree and the symbol table."},{"topic":"C Programming","q":"What is the output of the following C code?\nint a = 5, b = 10, c;\nc = a++ + ++b * 2;\nprintf(\"%d %d %d\", a, b, c);","options":["6 11 27","6 11 32","5 11 27","6 10 25"],"answer":0,"explain":"a++ gives 5 (then a becomes 6) and ++b gives 11. Because * has higher precedence: c = 5 + 11*2 = 27."},{"topic":"C Programming","q":"What is the output of the following C code?\nint i = 0;\nwhile (i++ < 3)\n    printf(\"%d \", i);\nprintf(\"%d\", i);","options":["0 1 2 3","1 2 3 3","1 2 3 4","0 1 2 4"],"answer":2,"explain":"The comparison uses the old value of i and then increments it. The body prints 1 2 3. The final test (3 < 3) fails but still increments i to 4."},{"topic":"C Programming","q":"What is the output of the following C code?\nvoid f() { static int c = 0; c++; printf(\"%d \", c); }\nint main() { f(); f(); f(); return 0; }","options":["1 1 1","0 1 2","0 0 0","1 2 3"],"answer":3,"explain":"A static local variable is initialised only once and keeps its value between function calls, so it prints 1 2 3."},{"topic":"Software Engineering","q":"Which SDLC model is best suited to a project whose requirements are well understood, fixed and unlikely to change?","options":["Spiral model","Waterfall model","Prototyping model","Evolutionary model"],"answer":1,"explain":"The Waterfall model is linear and sequential, so it works well when requirements are clear and stable from the start."},{"topic":"Software Engineering","q":"Which SDLC model, proposed by Barry Boehm, explicitly includes risk analysis in each iteration?","options":["Spiral model","V-model","RAD model","Waterfall model"],"answer":0,"explain":"Each loop of the Spiral model has planning, risk analysis, engineering and evaluation phases, so it suits large high-risk projects."},{"topic":"Software Engineering","q":"Acceptance testing carried out by real users at the developer's site, in a controlled environment, is called:","options":["Beta testing","Regression testing","Alpha testing","Integration testing"],"answer":2,"explain":"Alpha testing is done at the developer's site. Beta testing is done by real users in their own environment."},{"topic":"Web Technology","q":"Which attribute of the HTML <a> tag, with which value, opens a linked document in a new browser tab or window?","options":["href=\"_new\"","rel=\"_blank\"","target=\"_self\"","target=\"_blank\""],"answer":3,"explain":"target=\"_blank\" opens the link in a new tab or window. target=\"_self\" (the default) opens it in the same tab."},{"topic":"Web Technology","q":"Which of the following HTTP methods is NOT idempotent?","options":["GET","POST","PUT","DELETE"],"answer":1,"explain":"Sending the same POST request again can create duplicate resources. GET, PUT and DELETE give the same result when repeated."},{"topic":"Computer Architecture","q":"In which addressing mode is the operand value itself given in the instruction (e.g. MOV R1, #25)?","options":["Immediate addressing","Direct addressing","Indirect addressing","Register addressing"],"answer":0,"explain":"In immediate mode the operand is a constant inside the instruction, so no memory access is needed to fetch it."},{"topic":"Computer Architecture","q":"A direct-mapped cache of 16 KB has a block size of 16 bytes, and the main memory address is 32 bits. How many bits are used for the tag?","options":["16","20","18","22"],"answer":2,"explain":"Offset = log2(16) = 4 bits. Lines = 16 KB / 16 B = 1024, so index = 10 bits. Tag = 32 - 10 - 4 = 18 bits."},{"topic":"Cloud","q":"Google App Engine, which lets developers deploy their code without managing servers or operating systems, is an example of:","options":["Infrastructure as a Service (IaaS)","Software as a Service (SaaS)","Network as a Service (NaaS)","Platform as a Service (PaaS)"],"answer":3,"explain":"PaaS provides a ready runtime platform for deploying applications. IaaS gives virtual machines, and SaaS gives finished applications like Gmail."},{"topic":"Data Warehouse & Mining","q":"Which of the following is a characteristic of OLAP systems compared with OLTP systems?","options":["Complex, read-mostly queries on historical, summarized data","A large number of short insert/update transactions","Highly normalized current operational data","Used mainly by clerks for day-to-day operations"],"answer":0,"explain":"OLAP supports analysis and decision-making on historical, aggregated data. OLTP handles daily transactions on current, normalized data."},{"topic":"Security","q":"Alice wants to send a confidential message to Bob using public-key (asymmetric) cryptography. Which key should she use to encrypt the message?","options":["Alice's private key","Bob's public key","Alice's public key","Bob's private key"],"answer":1,"explain":"Only Bob's private key can decrypt data that was encrypted with Bob's public key, so only Bob can read the message."},{"topic":"Security","q":"Which type of malware replicates itself and spreads across a network on its own, without needing to attach to a host program?","options":["Virus","Worm","Trojan horse","Spyware"],"answer":1,"explain":"A worm is a standalone program that spreads by itself. A virus needs a host file, and a Trojan pretends to be useful software."},{"topic":"Java/Mobile/AI/CBS","q":"Which is the main feature of a Core Banking Solution (CBS)?","options":["Each branch keeps its own separate database of customer accounts","All branches work on a centralized database, so a customer can transact from any branch","Transactions are updated only once at the end of the month","It is used only for ATM cash withdrawals"],"answer":1,"explain":"In CBS all branches connect to one central data centre in real time, so the account is \"bank-wide\" and can be operated from any branch, ATM or net banking."}]};
+const PKEY='ibps-rrb-it-papers';
+function pLoad(){try{return JSON.parse(localStorage.getItem(PKEY)||'{}')}catch(e){return {}}}
+function pSave(o){try{localStorage.setItem(PKEY,JSON.stringify(o))}catch(e){}}
+function pCards(){const b=pLoad();Object.keys(PAPERS).forEach(n=>{const r=b[n],el=document.getElementById('ppb'+n);if(el)el.textContent=r?('Best: '+r.best+' / 40 marks · '+r.tries+' attempt'):'Abhi attempt nahi kiya';});}
+let ppTimer=null;
+function startPaper(n){
+  const P=PAPERS[n],box=document.getElementById('pp');clearInterval(ppTimer);
+  let h='<div class="pp-bar"><b>Practice Paper '+n+'</b><span>Attempted: <b id="ppa">0</b> / '+P.length+'</span><span class="pp-time" id="ppt">30:00</span><button class="primary" type="button" id="pps">Submit</button><button type="button" id="ppx">Band karo</button></div><div id="ppr"></div><div class="pp-q">';
+  P.forEach((q,qi)=>{h+='<div class="qq" data-q="'+qi+'"><div class="qt">Q'+(qi+1)+'. '+esc(q.q)+'<span class="tg">'+esc(q.topic)+'</span></div>';
+    q.options.forEach((o,oi)=>{h+='<label data-oi="'+oi+'"><input type="radio" name="pp'+n+'_'+qi+'" value="'+oi+'"><span>'+'ABCD'[oi]+'. '+esc(o)+'</span></label>';});
+    h+='<div class="ex">💡 '+esc(q.explain)+'</div></div>';});
+  h+='</div><div class="qa"><button class="primary" type="button" id="pps2">Submit</button></div>';
+  box.innerHTML=h;box.classList.add('on');box.classList.remove('checked');box.scrollIntoView({behavior:'smooth'});
+  const end=Date.now()+30*60*1000,tEl=document.getElementById('ppt');let done=false;
+  const tick=()=>{const s=Math.max(0,Math.round((end-Date.now())/1000));tEl.textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');tEl.classList.toggle('low',s<=300);if(s===0)submit(true);};
+  tick();ppTimer=setInterval(tick,1000);
+  box.addEventListener('change',()=>{document.getElementById('ppa').textContent=box.querySelectorAll('.pp-q input:checked').length;});
+  function submit(auto){
+    if(done)return;done=true;clearInterval(ppTimer);
+    let c=0,w=0,u=0;const tp={};
+    P.forEach((q,qi)=>{const wrap=box.querySelector('.qq[data-q="'+qi+'"]');const sel=wrap.querySelector('input:checked');const v=sel?+sel.value:-1;
+      const t=tp[q.topic]||(tp[q.topic]={c:0,n:0});t.n++;
+      if(v<0)u++;else if(v===q.answer){c++;t.c++;}else w++;
+      wrap.querySelectorAll('label').forEach(l=>{const oi=+l.dataset.oi;if(oi===q.answer)l.classList.add('right');else if(oi===v)l.classList.add('wrong');l.querySelector('input').disabled=true;});});
+    const marks=c-w*0.25;box.classList.add('checked');
+    const b=pLoad();const r=b[n]||{best:-99,tries:0};b[n]={best:Math.max(r.best,marks),tries:r.tries+1};pSave(b);pCards();
+    let rows='';Object.keys(tp).forEach(k=>{rows+='<tr><td>'+esc(k)+'</td><td>'+tp[k].c+' / '+tp[k].n+'</td></tr>';});
+    document.getElementById('ppr').innerHTML='<div class="pp-res"><b>'+(auto?'⏰ Time khatam. ':'')+'Marks: '+marks+' / 40</b> · ✅ Sahi '+c+' · ❌ Galat '+w+' · ⬜ Chhoda '+u+'<div class="s">Neeche har sawal ka sahi jawab (hara) aur explanation hai.</div><div class="pp-wrap"><table><tr><th>Topic</th><th>Sahi</th></tr>'+rows+'</table></div></div>';
+    ['pps','pps2'].forEach(id=>{const x=document.getElementById(id);if(x)x.remove();});
+    const again=document.createElement('button');again.type='button';again.textContent='Dobara attempt karo';again.onclick=()=>startPaper(n);box.querySelector('.qa').append(again);
+    document.getElementById('ppr').scrollIntoView({behavior:'smooth'});
+  }
+  document.getElementById('pps').onclick=()=>submit(false);document.getElementById('pps2').onclick=()=>submit(false);
+  document.getElementById('ppx').onclick=()=>{clearInterval(ppTimer);box.classList.remove('on');box.innerHTML='';document.getElementById('papers').scrollIntoView();};
+}
+document.querySelectorAll('[data-start]').forEach(b=>b.addEventListener('click',()=>startPaper(b.dataset.start)));
+pCards();</script></body></html>

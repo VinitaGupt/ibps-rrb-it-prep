@@ -1,0 +1,141 @@
+<!DOCTYPE html>
+<html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width,initial-scale=1">
+<title>IT Officer Practice Paper 3</title><style>
+:root{--bg:#f6f7f9;--card:#fff;--text:#1b1f24;--muted:#5d6570;--line:#e2e5ea;--accent:#1d4e89;--accent-soft:#e8eff8;
+--must:#c0392b;--opt:#b7791f;--skip:#2f855a;--done:#8a929c;--bar:#2f855a;--ok:#2f855a;--ok-soft:#e6f4ec;--bad:#c0392b;--bad-soft:#fbeaea;--lock:#9aa1aa}
+@media (prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#121417;--card:#1b1e23;--text:#e6e8eb;--muted:#9aa3ad;--line:#2c3037;
+--accent:#7fb0ee;--accent-soft:#1f2a38;--must:#f07167;--opt:#e0b04f;--skip:#5fc48a;--done:#6b737c;--bar:#5fc48a;--ok:#5fc48a;--ok-soft:#18301f;--bad:#f07167;--bad-soft:#3a1d1d;--lock:#5b626b}}
+:root[data-theme="dark"]{--bg:#121417;--card:#1b1e23;--text:#e6e8eb;--muted:#9aa3ad;--line:#2c3037;
+--accent:#7fb0ee;--accent-soft:#1f2a38;--must:#f07167;--opt:#e0b04f;--skip:#5fc48a;--done:#6b737c;--bar:#5fc48a;--ok:#5fc48a;--ok-soft:#18301f;--bad:#f07167;--bad-soft:#3a1d1d;--lock:#5b626b}
+*{box-sizing:border-box}
+body{margin:0;background:var(--bg);color:var(--text);font:15px/1.5 "Segoe UI","Nirmala UI",system-ui,-apple-system,Arial,sans-serif}
+.wrap{max-width:900px;margin:0 auto;padding:20px 16px 48px}
+a{color:var(--accent)}
+.top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:6px}
+.back{font-size:14px;text-decoration:none}
+h1{font-size:24px;margin:6px 0 4px}
+.meta{color:var(--muted);font-size:14px;margin-bottom:12px}
+.pls a{display:inline-block;margin:2px 10px 2px 0}
+.progress{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;margin:14px 0 18px;position:sticky;top:0;z-index:2}
+.progress .row{display:flex;justify-content:space-between;font-size:14px;margin-bottom:6px;gap:8px;flex-wrap:wrap}
+.bar{height:8px;background:var(--line);border-radius:6px;overflow:hidden}
+.bar>div{height:100%;background:var(--bar);width:0;transition:width .2s}
+.free{font-size:13px;color:var(--muted);display:flex;align-items:center;gap:6px;margin-top:8px}
+section{background:var(--card);border:1px solid var(--line);border-radius:10px;margin:0 0 16px;overflow:hidden}
+section h2{font-size:16px;margin:0;padding:10px 14px;border-bottom:1px solid var(--line);display:flex;gap:10px;align-items:baseline;flex-wrap:wrap}
+section h2 .lvl{font-size:13px;font-weight:600}
+section.must h2 .lvl{color:var(--must)} section.opt h2 .lvl{color:var(--opt)}
+section h2 .cnt{margin-left:auto;font-size:13px;color:var(--muted);font-weight:400}
+ul.v{list-style:none;margin:0;padding:0}
+ul.v>li{border-top:1px solid var(--line)}
+ul.v>li:first-child{border-top:0}
+.r{display:flex;align-items:center;gap:10px;padding:8px 14px}
+.st{flex:none;width:22px;text-align:center;font-size:15px}
+.lec{flex:none;min-width:52px;font-size:13px;color:var(--muted);font-variant-numeric:tabular-nums}
+.t{flex:1;min-width:0}
+.t a{text-decoration:none;color:var(--text)} .t a:hover{color:var(--accent);text-decoration:underline}
+.yt,.qb{flex:none;font:inherit;font-size:13px;text-decoration:none;padding:2px 8px;border:1px solid var(--line);border-radius:6px;background:var(--card);color:var(--accent);cursor:pointer;white-space:nowrap}
+.qb.passed{color:var(--ok);border-color:var(--ok)}
+li.done .t a{color:var(--done)}
+li.locked .r{opacity:.55}
+li.locked .t a,li.locked .yt{pointer-events:none;color:var(--lock)}
+li.locked .qb{pointer-events:none;color:var(--lock)}
+.quiz{display:none;margin:0 14px 12px 46px;padding:12px 14px;border:1px solid var(--line);border-radius:8px;background:var(--bg)}
+li.open .quiz{display:block}
+.stem{white-space:pre-wrap;font-family:Consolas,"Cascadia Mono","Nirmala UI",monospace;font-size:13px;background:var(--card);border:1px solid var(--line);border-radius:6px;padding:10px;margin:0 0 12px;overflow-x:auto}
+.qq{margin:0 0 14px}
+.qq .qt{font-weight:600;margin-bottom:6px;white-space:pre-wrap}
+.qq label{display:flex;gap:8px;align-items:flex-start;padding:5px 8px;border-radius:6px;cursor:pointer;border:1px solid transparent}
+.qq label:hover{background:var(--card)}
+.qq input{margin-top:4px;flex:none}
+.qq label.right{background:var(--ok-soft);border-color:var(--ok)}
+.qq label.wrong{background:var(--bad-soft);border-color:var(--bad)}
+.qq .ex{display:none;font-size:13px;color:var(--muted);margin:6px 0 0 8px;white-space:pre-wrap}
+.quiz.checked .ex{display:block}
+.qa{display:flex;gap:10px;align-items:center;flex-wrap:wrap}
+.qa .msg{font-size:14px;font-weight:600}
+.msg.ok{color:var(--ok)} .msg.bad{color:var(--bad)}
+.box{background:var(--card);border:1px solid var(--line);border-radius:10px;padding:10px 14px;margin:0 0 16px}
+.box h3{margin:0 0 6px;font-size:15px}
+.box.skip h3{color:var(--skip)}
+.box ul{margin:0;padding-left:20px}
+.btns{display:flex;gap:8px}
+button{font:inherit;font-size:13px;background:var(--card);color:var(--text);border:1px solid var(--line);border-radius:6px;padding:4px 10px;cursor:pointer}
+button.primary{background:var(--accent);color:#fff;border-color:var(--accent)}
+button:disabled{opacity:.5;cursor:not-allowed}
+.grid{display:grid;grid-template-columns:repeat(auto-fill,minmax(260px,1fr));gap:12px;margin:10px 0 22px}
+.card{display:block;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:12px 14px;text-decoration:none;color:var(--text)}
+.card:hover{border-color:var(--accent)}
+.card .n{font-size:12px;color:var(--muted)} .card .h{font-weight:600;margin:2px 0 8px}
+.card .s{font-size:13px;color:var(--muted);margin-top:6px}
+h2.g{font-size:18px;margin:22px 0 4px}
+@media (max-width:560px){.lec{min-width:36px}.yt{display:none}.quiz{margin-left:14px}}
+@media print{.progress,.btns,.back,.qb,.quiz{display:none!important}body{background:#fff}section,.box{break-inside:avoid}li.locked .r{opacity:1}}
+</style></head>
+<body><div class="wrap"><div class="top"><a class="back" href="00_Index.html">← Sabhi subjects</a><a class="back" href="22_Previous_Year_Papers.html">Previous Year Papers →</a></div>
+<div class="part">IBPS RRB Officer Scale-II · IT Officer</div><h1>Practice Paper 3 – Professional Knowledge</h1>
+<div class="meta">40 sawal · 30 minute · +1 sahi, −0.25 galat. Pichhle saalon ke pattern par bana practice paper (asli IBPS paper nahi).</div>
+<style>
+.pp-list{display:grid;grid-template-columns:repeat(auto-fit,minmax(200px,1fr));gap:10px;margin-top:8px}
+.pp-card{border:1px solid var(--line);border-radius:8px;padding:10px 12px;background:var(--bg);display:flex;flex-direction:column;gap:6px}
+.pp-card b{font-size:15px}.pp-card .s{font-size:13px;color:var(--muted)}
+.pp{display:none;margin:0 0 16px;background:var(--card);border:1px solid var(--line);border-radius:10px;padding:0 14px 14px}
+.pp.on{display:block}
+.pp.checked .ex{display:block}
+.pp-bar{position:sticky;top:0;z-index:2;background:var(--card);display:flex;flex-wrap:wrap;gap:10px;align-items:center;justify-content:space-between;padding:10px 0;border-bottom:1px solid var(--line);margin-bottom:12px}
+.pp-time{font:600 18px/1 ui-monospace,Consolas,monospace;font-variant-numeric:tabular-nums}
+.pp-time.low{color:var(--bad)}
+.pp .tg{font-size:11px;color:var(--muted);font-weight:400;margin-left:6px}
+.pp-res{border:1px solid var(--line);border-radius:8px;padding:10px 12px;margin:0 0 12px;background:var(--bg)}
+.pp-res table{border-collapse:collapse;font-size:13px;margin-top:6px}.pp-res td,.pp-res th{padding:2px 10px 2px 0;text-align:left;font-variant-numeric:tabular-nums}
+.pp-wrap{overflow-x:auto}
+</style><div class="box" id="papers"><h3>🧪 IT Officer Practice Papers (Professional Knowledge)</h3>
+<div class="s">Har paper: 40 sawal · 30 minute · +1 sahi, −0.25 galat · khali chhoda = 0. Timer khatam hote hi paper apne aap submit ho jayega.</div>
+<div class="pp-list"><div class="pp-card" data-n="3"><b>Practice Paper 3</b><span class="s" id="ppb3">Abhi attempt nahi kiya</span><button class="primary" type="button" data-start="3">Paper 3 shuru karo</button></div></div></div>
+<div class="pp" id="pp"></div></div><script>
+const KEY='ibps-rrb-it-quiz';
+function load(){try{return JSON.parse(localStorage.getItem(KEY)||'{}')}catch(e){return {}}}
+function save(o){try{localStorage.setItem(KEY,JSON.stringify(o))}catch(e){}}
+function loadFree(){try{return localStorage.getItem('ibps-rrb-it-free')==='1'}catch(e){return false}}
+function saveFree(v){try{localStorage.setItem('ibps-rrb-it-free',v?'1':'0')}catch(e){}}
+
+function esc(s){return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;')}
+
+const PAPERS={"3":[{"topic":"OS","q":"A disk has cylinders 0-199 and the head is at cylinder 50. The request queue is: 82, 170, 43, 140, 24, 16, 190. What is the total head movement using SSTF (Shortest Seek Time First) scheduling?","options":["642 cylinders","208 cylinders","224 cylinders","174 cylinders"],"answer":1,"explain":"SSTF order: 50→43→24→16→82→140→170→190 = 7+19+8+66+58+30+20 = 208 cylinders."},{"topic":"OS","q":"Paging eliminates external fragmentation, but which type of fragmentation can still occur in a paging system?","options":["Internal fragmentation","External fragmentation","Both internal and external fragmentation","No fragmentation at all"],"answer":0,"explain":"The last page of a process may not be completely filled, so space inside that frame is wasted (internal fragmentation)."},{"topic":"OS","q":"In which file allocation method does every file have its own block that holds pointers to all the disk blocks of that file?","options":["Contiguous allocation","Linked allocation","Indexed allocation","Extent-based contiguous allocation"],"answer":2,"explain":"Indexed allocation keeps all block pointers of a file in an index block, allowing direct access without external fragmentation."},{"topic":"OS","q":"Consider the page reference string 7, 0, 1, 2, 0, 3, 0, 4, 2, 3, 0, 3, 2, 1, 2 with 3 page frames (initially empty). How many page faults occur using LRU page replacement?","options":["12","9","11","10"],"answer":3,"explain":"LRU faults on 7,0,1,2,3,4,2,3,0,1 = 10 faults (FIFO would give 12)."},{"topic":"DBMS","q":"IBM's IMS (Information Management System), one of the earliest DBMSs, is based on which data model?","options":["Hierarchical model","Network model","Relational model","Object-oriented model"],"answer":0,"explain":"IMS organises data as a tree of parent-child records, i.e. the hierarchical model."},{"topic":"DBMS","q":"Which of the following is a DCL (Data Control Language) command in SQL?","options":["COMMIT","ALTER","GRANT","TRUNCATE"],"answer":2,"explain":"GRANT and REVOKE are DCL commands; COMMIT is TCL, while ALTER and TRUNCATE are DDL."},{"topic":"DBMS","q":"Table EMP(id, name, dept, sal) has rows: (1,Asha,IT,40000), (2,Ravi,HR,25000), (3,Meena,IT,30000), (4,John,SALES,20000), (5,Kiran,HR,28000), (6,Neha,SALES,NULL). What is the output of: SELECT COUNT(*), COUNT(sal) FROM EMP WHERE dept <> 'IT';","options":["4, 4","4, 3","3, 3","6, 5"],"answer":1,"explain":"4 rows are not IT; COUNT(*) counts all 4 rows but COUNT(sal) skips the NULL salary, giving 3."},{"topic":"DBMS","q":"Which constraint ensures that all values in a column are distinct but still allows NULL values?","options":["PRIMARY KEY","NOT NULL","CHECK","UNIQUE"],"answer":3,"explain":"UNIQUE forbids duplicate values but permits NULLs; PRIMARY KEY forbids both duplicates and NULLs."},{"topic":"DBMS","q":"Log-based recovery with immediate update uses a checkpoint. T1 committed before the checkpoint, T2 started before the checkpoint and committed after it, and T3 started after the checkpoint but was still active at the crash. What does recovery do?","options":["Ignore T1, REDO T2, UNDO T3","REDO T1 and T2, UNDO T3","UNDO T1, REDO T2 and T3","Ignore T1 and T2, UNDO T3"],"answer":0,"explain":"Work of T1 is already safe on disk at the checkpoint; committed T2 is redone from the log and uncommitted T3 is undone."},{"topic":"DBMS","q":"The component of a DBMS that stores metadata such as table definitions, column types, constraints and user privileges is called the:","options":["Transaction log","Buffer manager","Data dictionary","Query optimizer"],"answer":2,"explain":"The data dictionary (system catalog) holds \"data about data\", i.e. metadata of the database."},{"topic":"Networking","q":"Which guided transmission medium is immune to electromagnetic interference (EMI)?","options":["Unshielded twisted pair","Coaxial cable","Shielded twisted pair","Optical fibre cable"],"answer":3,"explain":"Optical fibre carries light signals instead of electrical signals, so EMI does not affect it."},{"topic":"Networking","q":"How many dedicated point-to-point links are needed to connect 8 devices in a fully connected mesh topology?","options":["28","56","8","16"],"answer":0,"explain":"A full mesh needs n(n-1)/2 links = 8×7/2 = 28."},{"topic":"Networking","q":"What is the broadcast address of the subnet to which the host 172.16.45.130/26 belongs?","options":["172.16.45.127","172.16.45.191","172.16.45.255","172.16.45.192"],"answer":1,"explain":"A /26 gives blocks of 64; 130 falls in 128-191, so the broadcast address is 172.16.45.191."},{"topic":"Networking","q":"Which routing protocol is a path-vector protocol used to exchange routes between different autonomous systems on the Internet?","options":["RIP","OSPF","BGP","IS-IS"],"answer":2,"explain":"BGP is the inter-domain (exterior) path-vector protocol; RIP is distance-vector and OSPF/IS-IS are link-state interior protocols."},{"topic":"Networking","q":"FTP uses two separate TCP connections. Which ports are used by default for the control connection and the data connection (active mode) respectively?","options":["21 and 20","20 and 21","23 and 21","21 and 25"],"answer":0,"explain":"FTP sends commands on port 21 (control) and transfers data from port 20 in active mode."},{"topic":"Networking","q":"What is the size of the fixed (base) header in IPv6?","options":["20 bytes","60 bytes","32 bytes","40 bytes"],"answer":3,"explain":"The IPv6 base header is always 40 bytes; extra options go in extension headers."},{"topic":"Data Structures","q":"An undirected graph has adjacency lists (in alphabetical order): A: B, C; B: A, D, E; C: A, F; D: B; E: B, F; F: C, E. What is the DFS order starting from A?","options":["A B C D E F","A C F E B D","A B D E F C","A B E F C D"],"answer":2,"explain":"DFS goes A→B→D, backtracks to B→E→F→C. (A B C D E F is the BFS order.)"},{"topic":"Data Structures","q":"An undirected weighted graph has edges: A-B 4, A-C 1, B-C 2, B-D 5, C-D 8, C-E 10, D-E 2, B-E 7. What is the total weight of its minimum spanning tree?","options":["11","10","12","9"],"answer":1,"explain":"Kruskal picks A-C(1), B-C(2), D-E(2), skips A-B (cycle), then B-D(5): 1+2+2+5 = 10."},{"topic":"Data Structures","q":"Which sorting algorithm has a worst-case time complexity of O(n log n) and also sorts in place (O(1) extra space)?","options":["Quick sort","Merge sort","Insertion sort","Heap sort"],"answer":3,"explain":"Heap sort is O(n log n) in all cases and in-place; quick sort is O(n²) worst case and merge sort needs O(n) extra space."},{"topic":"Data Structures","q":"What is the maximum number of comparisons needed to search for an element in a sorted array of 1000 elements using binary search?","options":["10","9","11","500"],"answer":0,"explain":"Binary search needs at most floor(log2 n) + 1 = 9 + 1 = 10 comparisons for n = 1000."},{"topic":"OOPS","q":"Which statement about a friend function in C++ is correct?","options":["It is a member function that can be called without an object","It is not a member of the class but can access its private and protected members","It is inherited by the derived classes of the class","It can access only the public members of the class"],"answer":1,"explain":"A friend function is declared inside the class with the keyword friend; it is a non-member but can access private/protected data."},{"topic":"OOPS","q":"What is the output of this C++ code?\nclass T { public: static int c; T() { c++; } };\nint T::c = 0;\nint main() { T a, b, x; T *p = new T; cout << T::c; }","options":["3","1","0","4"],"answer":3,"explain":"A static member has one shared copy; the constructor runs for a, b, x and the new T, so c = 4."},{"topic":"OOPS","q":"In C++, what is the default access specifier for members of a class and of a struct respectively?","options":["public, private","private, private","private, public","protected, public"],"answer":2,"explain":"Class members are private by default, while struct members are public by default."},{"topic":"Compiler","q":"Which of the following is NOT a way of representing three-address code?","options":["Parsing table","Quadruples","Triples","Indirect triples"],"answer":0,"explain":"Three-address code is stored as quadruples, triples or indirect triples; a parsing table is used by the parser."},{"topic":"Compiler","q":"Replacing the expression x * 2 by x + x (or a left shift by 1) during code optimization is an example of:","options":["Constant folding","Dead code elimination","Strength reduction","Loop unrolling"],"answer":2,"explain":"Strength reduction replaces a costly operation (multiply) with a cheaper one (add or shift)."},{"topic":"C Programming","q":"What is the output of the following C program?\nint f(int n) { if (n <= 1) return 1; return n + f(n - 2); }\nint main() { printf(\"%d\", f(7)); return 0; }","options":["15","28","13","16"],"answer":3,"explain":"f(7) = 7 + f(5) = 7 + 5 + f(3) = 7 + 5 + 3 + f(1) = 7 + 5 + 3 + 1 = 16."},{"topic":"C Programming","q":"What is the output of the following C code?\n#define SQ(x) x*x\nint main() { printf(\"%d\", SQ(3+2)); return 0; }","options":["25","11","13","10"],"answer":1,"explain":"The macro expands to 3+2*3+2 = 3+6+2 = 11, because the macro argument is not parenthesised."},{"topic":"C Programming","q":"Which statement about calloc(n, size) in C is correct?","options":["It allocates memory for n elements of the given size and initialises all bytes to zero","It allocates n bytes and leaves the memory uninitialised","It resizes a previously allocated block to n × size bytes","It allocates memory on the stack that is freed automatically"],"answer":0,"explain":"calloc takes two arguments and zero-fills the block; malloc leaves memory uninitialised and realloc resizes."},{"topic":"Software Engineering","q":"Which of the following is a white-box testing technique?","options":["Equivalence partitioning","Boundary value analysis","Basis path testing","Cause-effect graphing"],"answer":2,"explain":"Basis path testing uses the program's control flow graph (internal code), so it is white-box; the others are black-box."},{"topic":"Software Engineering","q":"Modifying a software product so that it keeps working after the organisation moves to a new operating system is called:","options":["Corrective maintenance","Adaptive maintenance","Perfective maintenance","Preventive maintenance"],"answer":1,"explain":"Adaptive maintenance changes software to suit a changed environment such as a new OS or hardware."},{"topic":"Software Engineering","q":"Which debugging approach starts at the point where the symptom is seen and traces the source code backward until the cause is found?","options":["Brute force","Cause elimination","Regression testing","Backtracking"],"answer":3,"explain":"In backtracking, the programmer moves backward through the code from the error symptom to locate the fault."},{"topic":"Web Technology","q":"In an XML DTD, which declaration defines an element \"name\" that can contain only character data (text)?","options":["<!ELEMENT name (#CDATA)>","<!ELEMENT name (#PCDATA)>","<!ATTLIST name #PCDATA>","<!ELEMENT name EMPTY>"],"answer":1,"explain":"#PCDATA (parsed character data) is used in element declarations for text-only content."},{"topic":"Web Technology","q":"What is the output of the following PHP code?\n<?php $a = \"5\"; $b = 3; echo $a . $b; ?>","options":["8","5 3","Error: type mismatch","53"],"answer":3,"explain":"The dot (.) is the string concatenation operator in PHP, so \"5\" and 3 are joined as \"53\"."},{"topic":"Computer Architecture","q":"A 5-stage instruction pipeline (each stage takes one clock cycle) executes 100 instructions with no stalls. How many clock cycles are required?","options":["104","500","100","105"],"answer":0,"explain":"Pipeline time = k + (n − 1) = 5 + 99 = 104 cycles."},{"topic":"Computer Architecture","q":"In the daisy-chaining method of priority interrupt, which device gets the highest priority?","options":["The device farthest from the CPU","The device with the lowest interrupt vector address","The device electrically closest to the CPU","The device that raised the interrupt first"],"answer":2,"explain":"The interrupt acknowledge signal passes serially along the chain, so the device nearest the CPU is served first."},{"topic":"Cloud","q":"A cloud infrastructure shared by several organisations that have common concerns such as security and compliance requirements is called a:","options":["Public cloud","Private cloud","Hybrid cloud","Community cloud"],"answer":3,"explain":"A community cloud is shared among organisations of a specific community with common requirements."},{"topic":"Data Warehouse & Mining","q":"In a data warehouse, a schema in which the dimension tables are normalised into multiple related sub-tables is called a:","options":["Star schema","Snowflake schema","Fact constellation schema","Flat schema"],"answer":1,"explain":"The snowflake schema normalises the dimensions of a star schema into extra tables, forming a snowflake shape."},{"topic":"Security","q":"An attacker enters ' OR '1'='1 in the password field of a login form and gets access without a valid password. This attack is:","options":["Cross-site scripting","Phishing","SQL injection","Man-in-the-middle attack"],"answer":2,"explain":"Malicious input changes the SQL query so the WHERE condition is always true, which is SQL injection."},{"topic":"Security","q":"Which security device is placed inline in the network path and can automatically block detected malicious traffic?","options":["Intrusion Prevention System (IPS)","Intrusion Detection System (IDS)","Network analyser (sniffer)","Honeypot"],"answer":0,"explain":"An IPS sits inline and actively drops or blocks attacks; an IDS mainly monitors and raises alerts."},{"topic":"Java/Mobile/AI/CBS","q":"Which of the following is an unsupervised machine learning algorithm?","options":["Linear regression","K-means clustering","Decision tree classifier","Support vector machine"],"answer":1,"explain":"K-means groups unlabelled data into clusters; the others need labelled training data (supervised)."}]};
+const PKEY='ibps-rrb-it-papers';
+function pLoad(){try{return JSON.parse(localStorage.getItem(PKEY)||'{}')}catch(e){return {}}}
+function pSave(o){try{localStorage.setItem(PKEY,JSON.stringify(o))}catch(e){}}
+function pCards(){const b=pLoad();Object.keys(PAPERS).forEach(n=>{const r=b[n],el=document.getElementById('ppb'+n);if(el)el.textContent=r?('Best: '+r.best+' / 40 marks · '+r.tries+' attempt'):'Abhi attempt nahi kiya';});}
+let ppTimer=null;
+function startPaper(n){
+  const P=PAPERS[n],box=document.getElementById('pp');clearInterval(ppTimer);
+  let h='<div class="pp-bar"><b>Practice Paper '+n+'</b><span>Attempted: <b id="ppa">0</b> / '+P.length+'</span><span class="pp-time" id="ppt">30:00</span><button class="primary" type="button" id="pps">Submit</button><button type="button" id="ppx">Band karo</button></div><div id="ppr"></div><div class="pp-q">';
+  P.forEach((q,qi)=>{h+='<div class="qq" data-q="'+qi+'"><div class="qt">Q'+(qi+1)+'. '+esc(q.q)+'<span class="tg">'+esc(q.topic)+'</span></div>';
+    q.options.forEach((o,oi)=>{h+='<label data-oi="'+oi+'"><input type="radio" name="pp'+n+'_'+qi+'" value="'+oi+'"><span>'+'ABCD'[oi]+'. '+esc(o)+'</span></label>';});
+    h+='<div class="ex">💡 '+esc(q.explain)+'</div></div>';});
+  h+='</div><div class="qa"><button class="primary" type="button" id="pps2">Submit</button></div>';
+  box.innerHTML=h;box.classList.add('on');box.classList.remove('checked');box.scrollIntoView({behavior:'smooth'});
+  const end=Date.now()+30*60*1000,tEl=document.getElementById('ppt');let done=false;
+  const tick=()=>{const s=Math.max(0,Math.round((end-Date.now())/1000));tEl.textContent=String(Math.floor(s/60)).padStart(2,'0')+':'+String(s%60).padStart(2,'0');tEl.classList.toggle('low',s<=300);if(s===0)submit(true);};
+  tick();ppTimer=setInterval(tick,1000);
+  box.addEventListener('change',()=>{document.getElementById('ppa').textContent=box.querySelectorAll('.pp-q input:checked').length;});
+  function submit(auto){
+    if(done)return;done=true;clearInterval(ppTimer);
+    let c=0,w=0,u=0;const tp={};
+    P.forEach((q,qi)=>{const wrap=box.querySelector('.qq[data-q="'+qi+'"]');const sel=wrap.querySelector('input:checked');const v=sel?+sel.value:-1;
+      const t=tp[q.topic]||(tp[q.topic]={c:0,n:0});t.n++;
+      if(v<0)u++;else if(v===q.answer){c++;t.c++;}else w++;
+      wrap.querySelectorAll('label').forEach(l=>{const oi=+l.dataset.oi;if(oi===q.answer)l.classList.add('right');else if(oi===v)l.classList.add('wrong');l.querySelector('input').disabled=true;});});
+    const marks=c-w*0.25;box.classList.add('checked');
+    const b=pLoad();const r=b[n]||{best:-99,tries:0};b[n]={best:Math.max(r.best,marks),tries:r.tries+1};pSave(b);pCards();
+    let rows='';Object.keys(tp).forEach(k=>{rows+='<tr><td>'+esc(k)+'</td><td>'+tp[k].c+' / '+tp[k].n+'</td></tr>';});
+    document.getElementById('ppr').innerHTML='<div class="pp-res"><b>'+(auto?'⏰ Time khatam. ':'')+'Marks: '+marks+' / 40</b> · ✅ Sahi '+c+' · ❌ Galat '+w+' · ⬜ Chhoda '+u+'<div class="s">Neeche har sawal ka sahi jawab (hara) aur explanation hai.</div><div class="pp-wrap"><table><tr><th>Topic</th><th>Sahi</th></tr>'+rows+'</table></div></div>';
+    ['pps','pps2'].forEach(id=>{const x=document.getElementById(id);if(x)x.remove();});
+    const again=document.createElement('button');again.type='button';again.textContent='Dobara attempt karo';again.onclick=()=>startPaper(n);box.querySelector('.qa').append(again);
+    document.getElementById('ppr').scrollIntoView({behavior:'smooth'});
+  }
+  document.getElementById('pps').onclick=()=>submit(false);document.getElementById('pps2').onclick=()=>submit(false);
+  document.getElementById('ppx').onclick=()=>{clearInterval(ppTimer);box.classList.remove('on');box.innerHTML='';document.getElementById('papers').scrollIntoView();};
+}
+document.querySelectorAll('[data-start]').forEach(b=>b.addEventListener('click',()=>startPaper(b.dataset.start)));
+pCards();</script></body></html>
